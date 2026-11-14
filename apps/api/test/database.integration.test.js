@@ -7,6 +7,8 @@ import { createApp } from '../src/app.js';
 import { up as legacyUp } from '../../../packages/database/migrations/202611140001_create_pages.js';
 import { up as schemaUp, down as schemaDown } from '../../../packages/database/migrations/202611140002_apps_views_and_translations.js';
 
+import { up as aliasesUp, down as aliasesDown } from '../../../packages/database/migrations/202611140003_text_aliases.js';
+
 // These tests must run against real PostgreSQL, never a mock or a silent skip.
 test('apps, page layouts, shared translations, overrides, and ICU work together', async (t) => {
   const database = createDatabase(process.env.DATABASE_URL);
@@ -17,6 +19,7 @@ test('apps, page layouts, shared translations, overrides, and ICU work together'
   let legacyPageId;
   t.after(async () => {
     try {
+      await database.query('DELETE FROM text_aliases WHERE app_id = ANY($1::uuid[])', [appIds]);
       await database.query('DELETE FROM pages WHERE app_id = ANY($1::uuid[]) OR id = $2', [appIds, legacyPageId || null]);
       await database.query('DELETE FROM views WHERE app_id = ANY($1::uuid[])', [appIds]);
       await database.query('DELETE FROM apps WHERE id = ANY($1::uuid[])', [appIds]);
@@ -126,6 +129,27 @@ test('apps, page layouts, shared translations, overrides, and ICU work together'
   assert.equal((await format('constructor', {})).statusCode, 404);
   assert.equal((await format('empty', {})).json().message, '');
 
+  // Give app B its own key for app A's effective text, including overrides.
+  const aliasId = (await database.query("INSERT INTO texts (group_id, key) VALUES ($1, 'renamed') RETURNING id", [groupId])).rows[0].id;
+  await database.query('INSERT INTO text_aliases (app_id, text_id, source_app_id, source_text_id) VALUES ($1, $2, $3, $4)', [other.id, aliasId, shop.id, textIds.count]);
+  assert.equal((await getGroup(other, 'nb')).json().texts.renamed.message, override);
+  const aliasFormat = await app.inject({ method: 'POST', url: `/api/apps/${other.slug}/texts/${groupKey}/renamed/format?locale=nb`, payload: { variables: { count: 2 } } });
+  assert.equal(aliasFormat.statusCode, 200);
+  assert.equal(aliasFormat.json().message, '2 varsler');
+  await database.query('INSERT INTO text_translations (text_id, locale, message) VALUES ($1, $2, $3)', [aliasId, 'nb', `Status: [[${groupKey}.count]]`]);
+  // The same key in app A is an ordinary composed text; B's alias still follows A.count.
+  assert.equal((await format('renamed', { count: 1 })).json().message, 'Status: 1 varsel');
+  await database.query("UPDATE app_text_overrides SET message = 'Endret {count}' WHERE app_id = $1 AND text_id = $2 AND locale = 'nb'", [shop.id, textIds.count]);
+  assert.equal((await getGroup(other, 'nb')).json().texts.renamed.message, 'Endret {count}');
+  await assert.rejects(database.query('DELETE FROM texts WHERE id = $1', [textIds.count]), { code: '23503' });
+  await assert.rejects(database.query('INSERT INTO text_aliases (app_id, text_id, source_app_id, source_text_id) VALUES ($1, $2, $1, $2)', [shop.id, aliasId]), { code: '23514' });
+  // Source groups must remain assigned to the source app.
+  await database.query('UPDATE text_aliases SET source_text_id = $1 WHERE app_id = $2 AND text_id = $3', [textIds.submit, other.id, aliasId]);
+  assert.equal((await getGroup(other, 'en-GB')).json().texts.renamed.message, 'Place order');
+  await database.query('DELETE FROM app_text_groups WHERE app_id = $1 AND group_id = $2', [shop.id, groupId]);
+  assert.equal((await getGroup(other, 'nb')).statusCode, 500);
+  await database.query('INSERT INTO app_text_groups (app_id, group_id) VALUES ($1, $2)', [shop.id, groupId]);
+
   await assert.rejects(database.query("INSERT INTO texts (group_id, key) VALUES ($1, 'submit')", [groupId]), { code: '23505' });
   await assert.rejects(database.query("INSERT INTO text_translations (text_id, locale, message) VALUES ($1, 'nb', 'Duplicate')", [textIds.submit]), { code: '23505' });
   await assert.rejects(database.query("INSERT INTO app_text_overrides (app_id, text_id, locale, message) VALUES ($1, $2, 'nb', NULL)", [shop.id, textIds.submit]), { code: '23502' });
@@ -147,6 +171,16 @@ test('migration preserves legacy data and refuses a lossy downgrade', async () =
       assert.equal(page.path, '/legacy-page');
       assert.equal(page.body, 'Preserve this content');
       assert.equal(page.app_id, (await trx('apps').where('slug', 'default').first()).id);
+      await aliasesUp(trx);
+      const [aliasGroup] = await trx('text_groups').insert({ key: 'migration_test', name: 'Test' }).returning('id');
+      const [source, local] = await trx('texts').insert([
+        { group_id: aliasGroup.id, key: 'source' }, { group_id: aliasGroup.id, key: 'local' },
+      ]).returning('id');
+      await trx('text_aliases').insert({ app_id: page.app_id, text_id: local.id, source_app_id: page.app_id, source_text_id: source.id });
+      await assert.rejects(trx.transaction(async (savepoint) => aliasesDown(savepoint)), /Cannot roll back/);
+      await trx('text_aliases').del();
+      await trx('text_groups').where('id', aliasGroup.id).del();
+      await aliasesDown(trx);
       await schemaDown(trx);
       assert.equal((await trx('pages').first()).slug, 'legacy-page');
       await schemaUp(trx);

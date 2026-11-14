@@ -1,6 +1,7 @@
 import Fastify from 'fastify';
-import { getPage, getTextGroup, readinessQuery } from './content.js';
-import { canonicalLocale, createMessageFormatter } from './messages.js';
+import { getPage, readinessQuery } from './content.js';
+import { canonicalLocale } from './messages.js';
+import { createTextResolver } from './text-resolution.js';
 
 const slug = { type: 'string', maxLength: 160, pattern: '^[a-z0-9]+(-[a-z0-9]+)*$' };
 const textKey = { type: 'string', maxLength: 160, pattern: '^[a-z][a-z0-9_]*$' };
@@ -74,7 +75,7 @@ export function createApp({ database, logger = false }) {
   }, async (request, reply) => {
     const locale = requestedLocale(request, reply);
     if (reply.sent) return;
-    const group = await getTextGroup(database, request.params.app, request.params.group, locale);
+    const group = await createTextResolver(database, locale).group(request.params.app, request.params.group);
     if (!group) return reply.code(404).send({ error: 'Text group not found' });
     return group;
   });
@@ -94,13 +95,12 @@ export function createApp({ database, logger = false }) {
   }, async (request, reply) => {
     const locale = requestedLocale(request, reply);
     if (reply.sent) return;
-    const group = await getTextGroup(database, request.params.app, request.params.group, locale);
-    const text = group && Object.hasOwn(group.texts, request.params.key) ? group.texts[request.params.key] : null;
+    const text = await createTextResolver(database, locale).formatter(request.params.app, request.params.group, request.params.key);
     if (!text || text.message === null) return reply.code(404).send({ error: 'Translation not found' });
     // A malformed stored message is a server error; missing/invalid variables are a client error.
-    const formatter = createMessageFormatter(text.message, text.locale);
+    const { formatter } = text;
     try {
-      return { locale: text.locale, message: formatter.format(request.body?.variables || {}), isOverride: text.isOverride };
+      return { locale: text.locale, message: formatter.format(request.body?.variables || {}), isOverride: text.isOverride, ...(text.alias ? { alias: text.alias } : {}) };
     } catch {
       return reply.code(400).send({ error: 'Invalid message variables' });
     }
