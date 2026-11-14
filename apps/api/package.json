@@ -3,6 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "dependencies": { "@textanity/database": "*", "fastify": "5.12.8" },
-  "devDependencies": { "esbuild": "0.28.2" }
+  "dependencies": {
+    "@formatjs/icu-messageformat-parser": "3.5.23",
+    "@textanity/database": "*",
+    "fastify": "5.12.8",
+    "intl-messageformat": "12.1.5"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2",
+    "knex": "3.3.0"
+  }
 }
