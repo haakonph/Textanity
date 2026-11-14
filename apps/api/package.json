@@ -1,0 +1,8 @@
+{
+  "name": "@textanity/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": { "@textanity/database": "*", "fastify": "5.12.8" },
+  "devDependencies": { "esbuild": "0.28.2" }
+}

@@ -1,0 +1,10 @@
+{
+  "name": "database",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "targets": {
+    "lint": { "executor": "nx:run-commands", "options": { "command": "eslint packages/database" } },
+    "migrate": { "executor": "nx:run-commands", "cache": false, "options": { "command": "node --env-file-if-exists=.env packages/database/src/migrate.js latest" } },
+    "rollback": { "executor": "nx:run-commands", "cache": false, "options": { "command": "node --env-file-if-exists=.env packages/database/src/migrate.js rollback" } }
+  }
+}
