@@ -25,7 +25,7 @@ export async function api(token, path, { method = 'GET', body, signal } = {}) {
     data = await response.json();
   } catch (error) {
     if (error.name === 'AbortError') throw error;
-    throw new Error('Kan ikke koble til redaktør-API-et. Prøv igjen.');
+    throw new Error('Kan ikke koble til redaktør-API-et. Prøv igjen.', { cause: error });
   }
   if (!response.ok) {
     const messages = {
