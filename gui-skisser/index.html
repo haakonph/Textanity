@@ -9,7 +9,7 @@
 <style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
 
 </head>
-<body><nav aria-label="Skisser" style="display:flex;flex-wrap:wrap;gap:20px;max-width:1200px;margin:0 auto 12px;font:14px system-ui,sans-serif"><a href="galleri.html">Se alle fem skissene som bilder</a><a href="textanity-skisser.pdf">Åpne PDF</a></nav>
+<body><nav aria-label="Skisser" style="display:flex;flex-wrap:wrap;gap:20px;max-width:1200px;margin:0 auto 12px;font:14px system-ui,sans-serif"><a href="galleri.html">Se skissene som bilder</a><a href="textanity-skisser.pdf">Åpne PDF</a></nav>
 <iframe id="codex-visualization" sandbox="allow-scripts" referrerpolicy="no-referrer" title="Textanity – GUI-skisser" data-srcdoc="&lt;!doctype html&gt;
 &lt;html lang=&quot;en&quot; data-visualize-standalone&gt;
 &lt;head&gt;
@@ -1888,22 +1888,13 @@ html&gt;body{padding:0}&lt;/style&gt;
         &lt;/div&gt;
       &lt;/section&gt;
       &lt;section data-screen=&quot;view&quot; aria-label=&quot;Rediger visning&quot; hidden&gt;
-        &lt;div class=&quot;tn-page-heading&quot;&gt;&lt;div&gt;&lt;span class=&quot;tn-overline tn-view-context&quot;&gt;VISNING PÅ SIDEN&lt;/span&gt;&lt;h1 class=&quot;tn-view-name&quot;&gt;Velkomstfelt&lt;/h1&gt;&lt;p class=&quot;tn-view-type&quot;&gt;Komponenttype: hero&lt;/p&gt;&lt;/div&gt;&lt;label class=&quot;tn-language&quot;&gt;Språk&lt;select class=&quot;tn-locale&quot;&gt;&lt;option value=&quot;nb&quot;&gt;Bokmål · nb&lt;/option&gt;&lt;option value=&quot;en&quot;&gt;Engelsk · en&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;/div&gt;
-        &lt;div class=&quot;tn-view-scope&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;tn-scope-button cursor-interaction&quot; data-scope=&quot;placement&quot; aria-pressed=&quot;true&quot;&gt;Denne plasseringen&lt;/button&gt;&lt;button type=&quot;button&quot; class=&quot;tn-scope-button cursor-interaction&quot; data-scope=&quot;reusable&quot; aria-pressed=&quot;false&quot;&gt;Gjenbrukbar visning&lt;/button&gt;&lt;/div&gt;
-        &lt;div class=&quot;tn-two-col tn-editor-columns&quot;&gt;
-          &lt;section class=&quot;tn-editor&quot; aria-label=&quot;Visningens innhold&quot;&gt;
-            &lt;p class=&quot;tn-scope-note&quot;&gt;Plasseringsinnstillinger gjelder bare på Forside.&lt;/p&gt;
-            &lt;label class=&quot;tn-field tn-placement-field&quot;&gt;Justering på denne siden&lt;select class=&quot;tn-alignment&quot;&gt;&lt;option value=&quot;start&quot;&gt;Venstre&lt;/option&gt;&lt;option value=&quot;center&quot;&gt;Midtstilt&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
-            &lt;div class=&quot;tn-reusable-info&quot; hidden&gt;&lt;span class=&quot;tn-tag&quot;&gt;Gjenbrukes&lt;/span&gt;&lt;p&gt;Visningens innstillinger deles av alle sidene som bruker den.&lt;/p&gt;&lt;/div&gt;
-            &lt;div class=&quot;tn-text-heading&quot;&gt;&lt;h2&gt;Overskrift&lt;/h2&gt;&lt;code class=&quot;tn-text-key&quot;&gt;home.title&lt;/code&gt;&lt;/div&gt;
-            &lt;div class=&quot;tn-text-origin&quot;&gt;&lt;span class=&quot;tn-origin-label&quot;&gt;Felles tekst · nb&lt;/span&gt;&lt;strong class=&quot;tn-base-text&quot;&gt;Velkommen til butikken&lt;/strong&gt;&lt;button class=&quot;tn-text-link cursor-interaction&quot; type=&quot;button&quot; data-go=&quot;common&quot;&gt;Åpne i felles område &lt;i data-lucide=&quot;arrow-up-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;&lt;/div&gt;
-            &lt;label class=&quot;tn-checkbox&quot;&gt;&lt;input class=&quot;tn-use-local&quot; type=&quot;checkbox&quot;&gt;&lt;span&gt;Bruk egen tekst for &lt;span class=&quot;tn-app-value&quot;&gt;Nettbutikk&lt;/span&gt;&lt;/span&gt;&lt;/label&gt;
-            &lt;label class=&quot;tn-field&quot;&gt;Tekst&lt;textarea class=&quot;tn-local-text&quot; rows=&quot;2&quot; disabled&gt;Velkommen til butikken&lt;/textarea&gt;&lt;/label&gt;
-            &lt;p class=&quot;tn-text-consequence&quot;&gt;Teksten følger tekstnøkkelen og språket i hele appen.&lt;/p&gt;
-            &lt;div class=&quot;tn-actions&quot;&gt;&lt;button class=&quot;tn-primary tn-save cursor-interaction&quot; type=&quot;button&quot;&gt;Lagre endringer&lt;/button&gt;&lt;span class=&quot;tn-save-status&quot; role=&quot;status&quot;&gt;&lt;/span&gt;&lt;/div&gt;
-          &lt;/section&gt;
-          &lt;section class=&quot;tn-preview&quot; aria-label=&quot;Forenklet forhåndsvisning&quot;&gt;&lt;span class=&quot;tn-overline&quot;&gt;TEKST I KONTEKST&lt;/span&gt;&lt;div class=&quot;tn-preview-content&quot;&gt;&lt;span class=&quot;tn-preview-brand tn-app-value&quot;&gt;Nettbutikk&lt;/span&gt;&lt;h2 class=&quot;tn-preview-title&quot; aria-live=&quot;polite&quot;&gt;Velkommen til butikken&lt;/h2&gt;&lt;p class=&quot;tn-preview-description&quot;&gt;Finn noe du blir glad i.&lt;/p&gt;&lt;/div&gt;&lt;span class=&quot;tn-muted tn-preview-foot&quot;&gt;Forenklet forhåndsvisning&lt;/span&gt;&lt;/section&gt;
+        &lt;div class=&quot;tn-page-heading&quot;&gt;&lt;div&gt;&lt;span class=&quot;tn-overline tn-view-context&quot;&gt;VISNING PÅ SIDEN&lt;/span&gt;&lt;h1 class=&quot;tn-view-name&quot;&gt;Velkomstfelt&lt;/h1&gt;&lt;p class=&quot;tn-view-type&quot;&gt;hero · gjenbrukbar visning&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;p class=&quot;tn-table-note&quot;&gt;Endringer gjelder tekstnøkkelen i &lt;strong class=&quot;tn-app-value&quot;&gt;Nettbutikk&lt;/strong&gt;.&lt;/p&gt;
+        &lt;div class=&quot;tn-text-scroll&quot; role=&quot;region&quot; aria-label=&quot;Visningens tekster, med språk som kolonner&quot;&gt;
+          &lt;table class=&quot;tn-text-matrix&quot; data-matrix=&quot;view&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th scope=&quot;col&quot;&gt;Nøkkel&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Bokmål&lt;small&gt;nb&lt;/small&gt;&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Nynorsk&lt;small&gt;nn&lt;/small&gt;&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Engelsk&lt;small&gt;en-GB&lt;/small&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
         &lt;/div&gt;
+        &lt;div class=&quot;tn-actions&quot;&gt;&lt;button class=&quot;tn-primary cursor-interaction&quot; type=&quot;button&quot; data-save-table=&quot;view&quot;&gt;Lagre for Nettbutikk&lt;/button&gt;&lt;span class=&quot;tn-table-status&quot; data-status=&quot;view&quot; role=&quot;status&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+        &lt;details class=&quot;tn-view-settings&quot;&gt;&lt;summary class=&quot;cursor-interaction&quot;&gt;Innstillinger for visningen&lt;/summary&gt;&lt;p class=&quot;tn-view-usage&quot;&gt;Gjenbrukes på Forside og Om oss.&lt;/p&gt;&lt;label class=&quot;tn-field tn-placement-field&quot;&gt;Justering på denne siden&lt;select class=&quot;tn-alignment&quot;&gt;&lt;option value=&quot;start&quot;&gt;Venstre&lt;/option&gt;&lt;option value=&quot;center&quot;&gt;Midtstilt&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;/details&gt;
       &lt;/section&gt;
       &lt;section data-screen=&quot;views&quot; aria-label=&quot;Appens gjenbrukbare visninger&quot; hidden&gt;
         &lt;div class=&quot;tn-page-heading&quot;&gt;&lt;div&gt;&lt;span class=&quot;tn-overline tn-app-label&quot;&gt;NETTBUTIKK&lt;/span&gt;&lt;h1&gt;Visninger&lt;/h1&gt;&lt;p&gt;Gjenbrukbare visninger som tilhører denne appen.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
@@ -1911,16 +1902,20 @@ html&gt;body{padding:0}&lt;/style&gt;
         &lt;button class=&quot;tn-view-row cursor-interaction&quot; type=&quot;button&quot; data-library-view=&quot;contact&quot;&gt;&lt;i data-lucide=&quot;message-circle&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;&lt;strong&gt;Kontaktfelt&lt;/strong&gt;&lt;small&gt;contact · brukes på Forside&lt;/small&gt;&lt;/span&gt;&lt;i data-lucide=&quot;chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
       &lt;/section&gt;
       &lt;section data-screen=&quot;texts&quot; aria-label=&quot;Tekster brukt av appen&quot; hidden&gt;
-        &lt;div class=&quot;tn-page-heading&quot;&gt;&lt;div&gt;&lt;span class=&quot;tn-overline tn-app-label&quot;&gt;NETTBUTIKK&lt;/span&gt;&lt;h1&gt;Appens tekster&lt;/h1&gt;&lt;p&gt;Felles tekster og appens egne tilpasninger.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
-        &lt;button class=&quot;tn-view-row cursor-interaction&quot; type=&quot;button&quot; data-text-view=&quot;hero&quot;&gt;&lt;span&gt;&lt;strong&gt;Velkommen til butikken&lt;/strong&gt;&lt;small&gt;home.title · Felles tekst · nb&lt;/small&gt;&lt;/span&gt;&lt;span class=&quot;tn-row-link&quot;&gt;Åpne tekst&lt;/span&gt;&lt;/button&gt;
-        &lt;button class=&quot;tn-view-row cursor-interaction&quot; type=&quot;button&quot; data-text-view=&quot;contact&quot;&gt;&lt;span&gt;&lt;strong&gt;Kan vi hjelpe deg?&lt;/strong&gt;&lt;small&gt;support.title · Felles tekst · nb&lt;/small&gt;&lt;/span&gt;&lt;span class=&quot;tn-row-link&quot;&gt;Åpne tekst&lt;/span&gt;&lt;/button&gt;
+        &lt;div class=&quot;tn-page-heading&quot;&gt;&lt;div&gt;&lt;span class=&quot;tn-overline tn-app-label&quot;&gt;NETTBUTIKK&lt;/span&gt;&lt;h1&gt;Appens tekster&lt;/h1&gt;&lt;p&gt;Én rad per nøkkel. Ett språk per kolonne.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;p class=&quot;tn-table-note&quot;&gt;Rediger en celle for å bruke en egen tekst i &lt;strong class=&quot;tn-app-value&quot;&gt;Nettbutikk&lt;/strong&gt;.&lt;/p&gt;
+        &lt;div class=&quot;tn-text-scroll&quot; role=&quot;region&quot; aria-label=&quot;Appens tekster, med språk som kolonner&quot;&gt;
+          &lt;table class=&quot;tn-text-matrix&quot; data-matrix=&quot;texts&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th scope=&quot;col&quot;&gt;Nøkkel&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Bokmål&lt;small&gt;nb&lt;/small&gt;&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Nynorsk&lt;small&gt;nn&lt;/small&gt;&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Engelsk&lt;small&gt;en-GB&lt;/small&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;tn-actions&quot;&gt;&lt;button class=&quot;tn-primary cursor-interaction&quot; type=&quot;button&quot; data-save-table=&quot;texts&quot;&gt;Lagre for Nettbutikk&lt;/button&gt;&lt;span class=&quot;tn-table-status&quot; data-status=&quot;texts&quot; role=&quot;status&quot;&gt;&lt;/span&gt;&lt;/div&gt;
       &lt;/section&gt;
       &lt;section data-screen=&quot;common&quot; aria-label=&quot;Felles tekstbibliotek&quot; hidden&gt;
-        &lt;div class=&quot;tn-page-heading&quot;&gt;&lt;div&gt;&lt;span class=&quot;tn-overline&quot;&gt;PÅ TVERS AV APPER&lt;/span&gt;&lt;h1&gt;Felles område&lt;/h1&gt;&lt;p&gt;Delte tekstgrupper og oversettelser.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
-        &lt;div class=&quot;tn-common-layout&quot;&gt;
-          &lt;section class=&quot;tn-groups&quot; aria-label=&quot;Tekstgrupper&quot;&gt;&lt;h2&gt;Tekstgrupper&lt;/h2&gt;&lt;button class=&quot;tn-group cursor-interaction&quot; type=&quot;button&quot; data-group=&quot;home&quot; aria-pressed=&quot;true&quot;&gt;&lt;strong&gt;Forside&lt;/strong&gt;&lt;code&gt;home&lt;/code&gt;&lt;/button&gt;&lt;button class=&quot;tn-group cursor-interaction&quot; type=&quot;button&quot; data-group=&quot;support&quot; aria-pressed=&quot;false&quot;&gt;&lt;strong&gt;Kundehjelp&lt;/strong&gt;&lt;code&gt;support&lt;/code&gt;&lt;/button&gt;&lt;span class=&quot;tn-muted&quot;&gt;Brukes av Nettbutikk og Kundeportal&lt;/span&gt;&lt;/section&gt;
-          &lt;section class=&quot;tn-common-editor&quot; aria-label=&quot;Felles tekst&quot;&gt;&lt;div class=&quot;tn-subheading&quot;&gt;&lt;div&gt;&lt;h2 class=&quot;tn-common-text-name&quot;&gt;Overskrift&lt;/h2&gt;&lt;code class=&quot;tn-common-key&quot;&gt;home.title&lt;/code&gt;&lt;/div&gt;&lt;label class=&quot;tn-language&quot;&gt;Språk&lt;select class=&quot;tn-common-locale&quot;&gt;&lt;option value=&quot;nb&quot;&gt;Bokmål · nb&lt;/option&gt;&lt;option value=&quot;en&quot;&gt;Engelsk · en&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;/div&gt;&lt;label class=&quot;tn-field&quot;&gt;Felles tekst&lt;textarea class=&quot;tn-common-message&quot; rows=&quot;3&quot;&gt;Velkommen til butikken&lt;/textarea&gt;&lt;/label&gt;&lt;div class=&quot;tn-impact&quot;&gt;&lt;i data-lucide=&quot;git-branch&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;span&gt;Gjelder appene som bruker denne teksten. Appenes egne overstyringer beholdes.&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;tn-used-by&quot;&gt;&lt;span class=&quot;tn-overline&quot;&gt;BRUKES AV&lt;/span&gt;&lt;button class=&quot;tn-text-link cursor-interaction&quot; type=&quot;button&quot; data-app=&quot;Nettbutikk&quot;&gt;Nettbutikk &lt;i data-lucide=&quot;arrow-up-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;&lt;button class=&quot;tn-text-link cursor-interaction&quot; type=&quot;button&quot; data-app=&quot;Kundeportal&quot;&gt;Kundeportal &lt;i data-lucide=&quot;arrow-up-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;&lt;/div&gt;&lt;div class=&quot;tn-actions&quot;&gt;&lt;button class=&quot;tn-primary tn-common-save cursor-interaction&quot; type=&quot;button&quot;&gt;Lagre felles tekst&lt;/button&gt;&lt;span class=&quot;tn-common-status&quot; role=&quot;status&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;/section&gt;
+        &lt;div class=&quot;tn-page-heading&quot;&gt;&lt;div&gt;&lt;span class=&quot;tn-overline&quot;&gt;PÅ TVERS AV APPER&lt;/span&gt;&lt;h1&gt;Felles tekster&lt;/h1&gt;&lt;p&gt;Én rad per nøkkel. Ett språk per kolonne.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;p class=&quot;tn-table-note&quot;&gt;Deles av Nettbutikk og Kundeportal. Appenes egne tekster beholdes.&lt;/p&gt;
+        &lt;div class=&quot;tn-text-scroll&quot; role=&quot;region&quot; aria-label=&quot;Felles tekster, med språk som kolonner&quot;&gt;
+          &lt;table class=&quot;tn-text-matrix&quot; data-matrix=&quot;common&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th scope=&quot;col&quot;&gt;Nøkkel&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Bokmål&lt;small&gt;nb&lt;/small&gt;&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Nynorsk&lt;small&gt;nn&lt;/small&gt;&lt;/th&gt;&lt;th scope=&quot;col&quot;&gt;Engelsk&lt;small&gt;en-GB&lt;/small&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
         &lt;/div&gt;
+        &lt;div class=&quot;tn-actions&quot;&gt;&lt;button class=&quot;tn-primary cursor-interaction&quot; type=&quot;button&quot; data-save-table=&quot;common&quot;&gt;Lagre felles tekster&lt;/button&gt;&lt;span class=&quot;tn-table-status&quot; data-status=&quot;common&quot; role=&quot;status&quot;&gt;&lt;/span&gt;&lt;/div&gt;
       &lt;/section&gt;
     &lt;/main&gt;
   &lt;/div&gt;
@@ -2026,47 +2021,254 @@ html&gt;body{padding:0}&lt;/style&gt;
 @media(max-width:800px) {#textanity-navigation .tn-shell{grid-template-columns:160px minmax(0,1fr);}#textanity-navigation{--tn-pad:20px;}#textanity-navigation .tn-two-col,#textanity-navigation .tn-editor-columns{grid-template-columns:1fr;}#textanity-navigation .tn-page-meta{display:none;}#textanity-navigation .tn-common-layout{grid-template-columns:125px minmax(0,1fr);gap:17px;}#textanity-navigation .tn-common-editor{padding-left:17px;}#textanity-navigation .tn-app-card{padding:15px;}#textanity-navigation .tn-table-head,#textanity-navigation .tn-page-row{grid-template-columns:minmax(0,1fr) 79px 55px;gap:6px;}}
 @media(max-width:580px) {#textanity-navigation .tn-shell{grid-template-columns:1fr;min-height:0;}#textanity-navigation .tn-sidebar{border-right:0;border-bottom:1px solid var(--tn-border);display:flex;flex-direction:row;flex-wrap:wrap;padding:10px;gap:6px;}#textanity-navigation .tn-sidebar&gt;.tn-overline,#textanity-navigation .tn-sidebar-foot{display:none;}#textanity-navigation .tn-nav{width:auto;font-size:12px;padding:9px;}#textanity-navigation .tn-app-navigation{width:100%;margin:5px 0 0;padding:12px 0 0;display:flex;flex-wrap:wrap;align-items:center;}#textanity-navigation .tn-app-navigation&gt;.tn-overline{display:none;}#textanity-navigation .tn-app-navigation select{width:auto;margin:0;}#textanity-navigation .tn-header{padding:15px 95px 15px 18px;flex-wrap:wrap;gap:5px;}#textanity-navigation .tn-demo{width:100%;margin:0;}#textanity-navigation .tn-main{padding:16px;}#textanity-navigation h1{font-size:25px;}#textanity-navigation .tn-app-grid{grid-template-columns:1fr;}#textanity-navigation .tn-app-card{display:grid;grid-template-columns:38px minmax(0,1fr);gap:5px 12px;}#textanity-navigation .tn-app-mark{grid-row:1/4;margin:0;}#textanity-navigation .tn-card-open{margin-top:7px;}#textanity-navigation .tn-common-layout{grid-template-columns:1fr;gap:22px;}#textanity-navigation .tn-common-editor{border-left:0;border-top:1px solid var(--tn-border);padding:20px 0 0;}#textanity-navigation .tn-groups{display:grid;grid-template-columns:1fr 1fr;}#textanity-navigation .tn-groups h2,#textanity-navigation .tn-groups&gt;.tn-muted{grid-column:1/-1;}#textanity-navigation .tn-page-heading{margin-bottom:23px;}#textanity-navigation .tn-table-head,#textanity-navigation .tn-page-row{padding-left:3px;padding-right:3px;grid-template-columns:minmax(0,1fr) 75px 55px;}#textanity-navigation .tn-common-card{padding:16px;gap:10px;}#textanity-navigation .tn-preview-title{font-size:26px;}#textanity-navigation select,#textanity-navigation textarea{font-size:16px;}}
 @media(pointer:coarse){#textanity-navigation button,#textanity-navigation select,#textanity-navigation .tn-checkbox{min-height:44px;}#textanity-navigation .tn-crumbs{gap:10px;}}
+#textanity-navigation .tn-table-note {font-size:12px;color:var(--tn-secondary);margin:0 0 15px;}
+#textanity-navigation .tn-text-scroll {max-width:100%;overflow-x:auto;}
+#textanity-navigation .tn-text-matrix {width:100%;min-width:720px;border-collapse:separate;border-spacing:0;table-layout:fixed;font-size:13px;}
+#textanity-navigation .tn-text-matrix th {text-align:left;font-weight:500;vertical-align:top;padding:12px 11px;border-bottom:1px solid var(--tn-border);background:var(--tn-wash);}
+#textanity-navigation .tn-text-matrix th:first-child {width:175px;}
+#textanity-navigation .tn-text-matrix tbody th {background:var(--tn-paper);padding:17px 11px;}
+#textanity-navigation .tn-text-matrix tbody th code {font-size:12px;color:var(--tn-ink);}
+#textanity-navigation .tn-text-matrix td {padding:9px 7px;vertical-align:top;border-bottom:1px solid var(--tn-border);}
+#textanity-navigation .tn-text-matrix textarea {width:100%;min-height:36px;resize:none;overflow:hidden;padding:7px 8px;border:1px solid transparent;border-radius:4px;line-height:1.5;background:var(--tn-paper);font-size:13px;}
+#textanity-navigation .tn-text-matrix textarea:hover,#textanity-navigation .tn-text-matrix textarea:focus {border-color:var(--tn-border);background:var(--tn-wash);}
+#textanity-navigation .tn-text-matrix textarea::placeholder {color:var(--tn-secondary);font-size:11px;}
+#textanity-navigation .tn-cell-source {display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:1px 9px 4px;color:var(--tn-secondary);font-size:10px;}
+#textanity-navigation .tn-cell-reset {border:0;padding:0;font-size:10px;color:var(--tn-accent);text-decoration:underline;}
+#textanity-navigation .tn-cell-own {color:var(--tn-accent);}
+#textanity-navigation .tn-table-status {color:var(--tn-secondary);font-size:11px;}
+#textanity-navigation .tn-view-settings {margin-top:32px;border-top:1px solid var(--tn-border);padding-top:15px;font-size:12px;}
+#textanity-navigation .tn-view-settings summary {font-weight:500;}
+#textanity-navigation .tn-view-usage {color:var(--tn-secondary);margin:15px 0;}
+#textanity-navigation .tn-view-settings .tn-field {max-width:240px;}
+#textanity-navigation .tn-shell {min-height:580px;}
+@media(max-width:800px){#textanity-navigation .tn-text-matrix{min-width:700px;}}
+@media(max-width:580px){#textanity-navigation .tn-text-matrix{min-width:690px;}#textanity-navigation .tn-text-matrix th:first-child{width:145px;}#textanity-navigation .tn-text-matrix th:first-child{position:sticky;left:0;z-index:1;}#textanity-navigation .tn-text-matrix textarea{font-size:16px;}#textanity-navigation .tn-cell-source,#textanity-navigation .tn-cell-reset{font-size:11px;}}
+@media(pointer:coarse){#textanity-navigation .tn-cell-reset{min-height:44px;}}
+
 &lt;/style&gt;
 &lt;script&gt;
 (() =&gt; {
-const root=document.getElementById(&#x27;textanity-navigation&#x27;);
-const q=s=&gt;root.querySelector(s), qa=s=&gt;root.querySelectorAll(s);
-const pages={Nettbutikk:[[&#x27;Forside&#x27;,&#x27;/&#x27;,&#x27;Utkast&#x27;,2],[&#x27;Om oss&#x27;,&#x27;/om-oss&#x27;,&#x27;Publisert&#x27;,1],[&#x27;Kontakt&#x27;,&#x27;/kontakt&#x27;,&#x27;Publisert&#x27;,1]],Kundeportal:[[&#x27;Oversikt&#x27;,&#x27;/&#x27;,&#x27;Utkast&#x27;,2],[&#x27;Om oss&#x27;,&#x27;/om-oss&#x27;,&#x27;Publisert&#x27;,1],[&#x27;Hjelp&#x27;,&#x27;/hjelp&#x27;,&#x27;Publisert&#x27;,1]]};
-const views={hero:{name:&#x27;Velkomstfelt&#x27;,key:&#x27;home.title&#x27;,group:&#x27;home&#x27;,nb:&#x27;Velkommen til butikken&#x27;,en:&#x27;Welcome to the shop&#x27;,support:&#x27;Finn noe du blir glad i.&#x27;},contact:{name:&#x27;Kontaktfelt&#x27;,key:&#x27;support.title&#x27;,group:&#x27;support&#x27;,nb:&#x27;Kan vi hjelpe deg?&#x27;,en:&#x27;How can we help?&#x27;,support:&#x27;Vi hjelper deg gjerne.&#x27;}};
-const state={screen:&#x27;home&#x27;,app:&#x27;Nettbutikk&#x27;,page:0,view:&#x27;hero&#x27;,scope:&#x27;placement&#x27;,locale:&#x27;nb&#x27;,group:&#x27;home&#x27;,commonLocale:&#x27;nb&#x27;,fromLibrary:false};
-const local={},commonDrafts={};
-const screens=new Set([&#x27;home&#x27;,&#x27;pages&#x27;,&#x27;page&#x27;,&#x27;view&#x27;,&#x27;views&#x27;,&#x27;texts&#x27;,&#x27;common&#x27;]);
-function restore(snapshot){const v=snapshot?.modelContent?.textanityNavigation;if(!v)return;if(screens.has(v.screen))state.screen=v.screen;if(pages[v.app])state.app=v.app;if(views[v.view])state.view=v.view;if([&#x27;home&#x27;,&#x27;support&#x27;].includes(v.group))state.group=v.group;if([&#x27;nb&#x27;,&#x27;en&#x27;].includes(v.locale))state.locale=v.locale;state.page=Number.isInteger(v.page)&amp;&amp;v.page&gt;=0&amp;&amp;v.page&lt;pages[state.app].length?v.page:0;state.scope=v.scope===&#x27;reusable&#x27;?&#x27;reusable&#x27;:&#x27;placement&#x27;;state.fromLibrary=!!v.fromLibrary;}
-function persist(){window.openai?.setWidgetState?.({modelContent:{textanityNavigation:{...state}},privateContent:null}).catch(()=&gt;{});}
-const page=()=&gt;pages[state.app][state.page];
-const selectedView=()=&gt;views[state.view];
-const textId=()=&gt;state.app+&#x27;:&#x27;+state.view+&#x27;:&#x27;+state.locale;
-const baseMessage=()=&gt;commonDrafts[selectedView().group+&#x27;:&#x27;+state.locale]??selectedView()[state.locale];
-function crumb(label,target){const el=document.createElement(target?&#x27;button&#x27;:&#x27;span&#x27;);el.textContent=label;if(target){el.type=&#x27;button&#x27;;el.className=&#x27;cursor-interaction&#x27;;el.dataset.go=target;}return el;}
-function renderCrumbs(){
-q(&#x27;.tn-view-context&#x27;).textContent=state.fromLibrary?&#x27;GJENBRUKBAR VISNING&#x27;:&#x27;VISNING PÅ SIDEN&#x27;;
-q(&#x27;.tn-view-scope&#x27;).hidden=state.fromLibrary;
-qa(&#x27;[data-open-view]&#x27;).forEach(b=&gt;{b.hidden=state.page===1?b.dataset.openView!==&#x27;hero&#x27;:state.page===2?b.dataset.openView!==&#x27;contact&#x27;:false;b.querySelector(&#x27;small&#x27;).textContent=&#x27;Visning: &#x27;+b.dataset.openView+&#x27; · brukes på 2 sider&#x27;;});
-q(&#x27;[data-library-view=hero] small&#x27;).textContent=&#x27;hero · brukes på &#x27;+pages[state.app][0][0]+&#x27; og &#x27;+pages[state.app][1][0];
-q(&#x27;[data-library-view=contact] small&#x27;).textContent=&#x27;contact · brukes på &#x27;+pages[state.app][0][0]+&#x27; og &#x27;+pages[state.app][2][0];
-q(&#x27;.tn-reusable-info p&#x27;).textContent=&#x27;Innstillingene deles av &#x27;+pages[state.app][0][0]+&#x27; og &#x27;+pages[state.app][state.view===&#x27;hero&#x27;?1:2][0]+&#x27;.&#x27;;
-const container=q(&#x27;.tn-crumbs&#x27;);container.replaceChildren();let items=[];if(state.screen===&#x27;home&#x27;)items=[[&#x27;Arbeidsområder&#x27;]];else if(state.screen===&#x27;common&#x27;)items=[[&#x27;Arbeidsområder&#x27;,&#x27;home&#x27;],[&#x27;Felles område&#x27;],[&#x27;Tekstgrupper&#x27;]];else{items=[[&#x27;Apper&#x27;,&#x27;home&#x27;],[state.app,&#x27;pages&#x27;]];if([&#x27;pages&#x27;,&#x27;page&#x27;].includes(state.screen))items.push([&#x27;Sider&#x27;,state.screen===&#x27;page&#x27;?&#x27;pages&#x27;:null]);if(state.screen===&#x27;page&#x27;)items.push([page()[0]]);if(state.screen===&#x27;views&#x27;)items.push([&#x27;Visninger&#x27;]);if(state.screen===&#x27;texts&#x27;)items.push([&#x27;Appens tekster&#x27;]);if(state.screen===&#x27;view&#x27;){items.push(state.fromLibrary?[&#x27;Visninger&#x27;,&#x27;views&#x27;]:[&#x27;Sider&#x27;,&#x27;pages&#x27;]);if(!state.fromLibrary)items.push([page()[0],&#x27;page&#x27;]);items.push([selectedView().name]);}}
-items.forEach((item,i)=&gt;{if(i){const sep=document.createElement(&#x27;span&#x27;);sep.textContent=&#x27;/&#x27;;sep.setAttribute(&#x27;aria-hidden&#x27;,&#x27;true&#x27;);container.append(sep);}container.append(crumb(...item));});}
-function renderPages(){const rows=q(&#x27;.tn-pages-rows&#x27;);rows.replaceChildren();pages[state.app].forEach((p,i)=&gt;{const b=document.createElement(&#x27;button&#x27;);b.type=&#x27;button&#x27;;b.className=&#x27;tn-page-row cursor-interaction&#x27;;b.dataset.page=String(i);b.setAttribute(&#x27;aria-label&#x27;,p[0]+&#x27;, &#x27;+p[2]);const name=document.createElement(&#x27;span&#x27;),strong=document.createElement(&#x27;strong&#x27;),small=document.createElement(&#x27;small&#x27;),status=document.createElement(&#x27;span&#x27;),count=document.createElement(&#x27;span&#x27;);strong.textContent=p[0];small.textContent=p[1];name.append(strong,small);status.className=&#x27;tn-tag&#x27;;status.textContent=p[2];count.textContent=String(p[3]);b.append(name,status,count);rows.append(b);});}
-function renderView(){const v=selectedView();q(&#x27;.tn-view-name&#x27;).textContent=v.name;q(&#x27;.tn-view-type&#x27;).textContent=&#x27;Komponenttype: &#x27;+state.view;q(&#x27;.tn-text-key&#x27;).textContent=v.key;q(&#x27;.tn-locale&#x27;).value=state.locale;q(&#x27;.tn-scope-note&#x27;).textContent=state.scope===&#x27;placement&#x27;?&#x27;Plasseringsinnstillinger gjelder bare på &#x27;+page()[0]+&#x27;.&#x27;:&#x27;Visningens innstillinger gjelder alle sidene som bruker den.&#x27;;q(&#x27;.tn-placement-field&#x27;).hidden=state.scope!==&#x27;placement&#x27;;q(&#x27;.tn-reusable-info&#x27;).hidden=state.scope!==&#x27;reusable&#x27;;qa(&#x27;[data-scope]&#x27;).forEach(b=&gt;b.setAttribute(&#x27;aria-pressed&#x27;,String(b.dataset.scope===state.scope)));q(&#x27;.tn-origin-label&#x27;).textContent=&#x27;Felles tekst · &#x27;+state.locale;q(&#x27;.tn-base-text&#x27;).textContent=baseMessage();const value=local[textId()];q(&#x27;.tn-use-local&#x27;).checked=value!==undefined;q(&#x27;.tn-local-text&#x27;).disabled=value===undefined;q(&#x27;.tn-local-text&#x27;).value=value??baseMessage();q(&#x27;.tn-preview-title&#x27;).textContent=value??baseMessage();q(&#x27;.tn-preview-description&#x27;).textContent=v.support;q(&#x27;.tn-save-status&#x27;).textContent=&#x27;&#x27;;q(&#x27;.tn-text-consequence&#x27;).textContent=&#x27;En egen tekst gjelder &#x27;+state.app+&#x27; / &#x27;+v.key+&#x27; / &#x27;+state.locale+&#x27;, på alle steder nøkkelen brukes.&#x27;;}
-function renderCommon(){const v=state.group===&#x27;home&#x27;?views.hero:views.contact;qa(&#x27;[data-group]&#x27;).forEach(b=&gt;b.setAttribute(&#x27;aria-pressed&#x27;,String(b.dataset.group===state.group)));q(&#x27;.tn-common-key&#x27;).textContent=v.key;q(&#x27;.tn-common-locale&#x27;).value=state.commonLocale;q(&#x27;.tn-common-message&#x27;).value=commonDrafts[state.group+&#x27;:&#x27;+state.commonLocale]??v[state.commonLocale];q(&#x27;.tn-common-status&#x27;).textContent=&#x27;&#x27;;}
-function render(){qa(&#x27;[data-screen]&#x27;).forEach(s=&gt;{s.hidden=s.dataset.screen!==state.screen;});const inApp=![&#x27;home&#x27;,&#x27;common&#x27;].includes(state.screen);q(&#x27;.tn-app-navigation&#x27;).hidden=!inApp;q(&#x27;#tn-app-picker&#x27;).value=state.app;qa(&#x27;.tn-app-value&#x27;).forEach(el=&gt;el.textContent=state.app);qa(&#x27;.tn-app-label&#x27;).forEach(el=&gt;el.textContent=state.app.toUpperCase());qa(&#x27;.tn-page-name&#x27;).forEach(el=&gt;el.textContent=page()[0]);qa(&#x27;.tn-page-path&#x27;).forEach(el=&gt;el.textContent=page()[1]);q(&#x27;[data-screen=page] .tn-tag&#x27;).textContent=page()[2];q(&#x27;.tn-context&#x27;).textContent=state.screen===&#x27;common&#x27;?&#x27;Felles område · på tvers av apper&#x27;:state.screen===&#x27;home&#x27;?&#x27;Arbeidsområder&#x27;:state.app+&#x27; · &#x27;+([&#x27;view&#x27;,&#x27;texts&#x27;].includes(state.screen)?&#x27;Språk: &#x27;+state.locale:&#x27;Appområde&#x27;);qa(&#x27;[data-nav]&#x27;).forEach(el=&gt;{const n=el.dataset.nav;const active=n===&#x27;apps&#x27;?state.screen===&#x27;home&#x27;:n===&#x27;common&#x27;?state.screen===&#x27;common&#x27;:n===&#x27;pages&#x27;?[&#x27;pages&#x27;,&#x27;page&#x27;].includes(state.screen)||(state.screen===&#x27;view&#x27;&amp;&amp;!state.fromLibrary):n===&#x27;views&#x27;?state.screen===&#x27;views&#x27;||(state.screen===&#x27;view&#x27;&amp;&amp;state.fromLibrary):state.screen===n;if(active)el.setAttribute(&#x27;aria-current&#x27;,&#x27;page&#x27;);else el.removeAttribute(&#x27;aria-current&#x27;);});renderCrumbs();renderPages();renderView();renderCommon();}
-function go(screen){state.screen=screen;render();persist();}
-root.addEventListener(&#x27;click&#x27;,event=&gt;{const b=event.target.closest(&#x27;button&#x27;);if(!b||!root.contains(b))return;if(b.dataset.go){if(b.dataset.go===&#x27;common&#x27;&amp;&amp;state.screen===&#x27;view&#x27;)state.group=selectedView().group;go(b.dataset.go);}else if(b.dataset.app){state.app=b.dataset.app;state.page=0;go(&#x27;pages&#x27;);}else if(b.dataset.page!==undefined){state.page=Number(b.dataset.page);go(&#x27;page&#x27;);}else if(b.dataset.openView){state.view=b.dataset.openView;state.scope=&#x27;placement&#x27;;state.fromLibrary=false;go(&#x27;view&#x27;);}else if(b.dataset.libraryView){state.view=b.dataset.libraryView;state.scope=&#x27;reusable&#x27;;state.fromLibrary=true;go(&#x27;view&#x27;);}else if(b.dataset.textView){state.view=b.dataset.textView;state.scope=&#x27;reusable&#x27;;state.fromLibrary=true;go(&#x27;view&#x27;);}else if(b.dataset.scope){state.scope=b.dataset.scope;render();persist();}else if(b.dataset.group){state.group=b.dataset.group;renderCommon();persist();}else if(b.classList.contains(&#x27;tn-save&#x27;)){q(&#x27;.tn-save-status&#x27;).textContent=&#x27;Lagret i skissen&#x27;;}else if(b.classList.contains(&#x27;tn-common-save&#x27;)){commonDrafts[state.group+&#x27;:&#x27;+state.commonLocale]=q(&#x27;.tn-common-message&#x27;).value;q(&#x27;.tn-common-status&#x27;).textContent=&#x27;Lagret i skissen&#x27;;}});
-q(&#x27;#tn-app-picker&#x27;).addEventListener(&#x27;change&#x27;,e=&gt;{state.app=e.target.value;state.page=0;go(&#x27;pages&#x27;);});
-q(&#x27;.tn-locale&#x27;).addEventListener(&#x27;change&#x27;,e=&gt;{state.locale=e.target.value;renderView();persist();});
-q(&#x27;.tn-use-local&#x27;).addEventListener(&#x27;change&#x27;,e=&gt;{if(e.target.checked)local[textId()]=baseMessage();else delete local[textId()];renderView();});
-q(&#x27;.tn-local-text&#x27;).addEventListener(&#x27;input&#x27;,e=&gt;{local[textId()]=e.target.value;q(&#x27;.tn-preview-title&#x27;).textContent=e.target.value;q(&#x27;.tn-save-status&#x27;).textContent=&#x27;Ulagret endring i skissen&#x27;;});
-q(&#x27;.tn-alignment&#x27;).addEventListener(&#x27;change&#x27;,e=&gt;{q(&#x27;.tn-preview-content&#x27;).style.textAlign=e.target.value;});
-q(&#x27;.tn-common-locale&#x27;).addEventListener(&#x27;change&#x27;,e=&gt;{state.commonLocale=e.target.value;renderCommon();persist();});
-q(&#x27;.tn-common-message&#x27;).addEventListener(&#x27;input&#x27;,()=&gt;{q(&#x27;.tn-common-status&#x27;).textContent=&#x27;Ulagret endring i skissen&#x27;;});
-restore(window.openai?.widgetState);render();window.addEventListener(&#x27;openai:set_globals&#x27;,e=&gt;{if(e.detail?.globals?.widgetState){restore(e.detail.globals.widgetState);render();}});
-if(globalThis.Tweak){const design={radius:9,spacing:28};const tweak=new Tweak({container:root,onChange:()=&gt;{root.style.setProperty(&#x27;--tn-round&#x27;,design.radius+&#x27;px&#x27;);root.style.setProperty(&#x27;--tn-pad&#x27;,design.spacing+&#x27;px&#x27;);}});tweak.addSlider(design,&#x27;radius&#x27;,{label:&#x27;Hjørner&#x27;,min:0,max:16,unit:&#x27;px&#x27;});tweak.addSlider(design,&#x27;spacing&#x27;,{label:&#x27;Luft rundt innhold&#x27;,min:16,max:36,unit:&#x27;px&#x27;});}
+  const root = document.getElementById(&#x27;textanity-navigation&#x27;);
+  const q = selector =&gt; root.querySelector(selector);
+  const qa = selector =&gt; root.querySelectorAll(selector);
+  const pages = {
+    Nettbutikk: [[&#x27;Forside&#x27;, &#x27;/&#x27;, &#x27;Utkast&#x27;, 2], [&#x27;Om oss&#x27;, &#x27;/om-oss&#x27;, &#x27;Publisert&#x27;, 1], [&#x27;Kontakt&#x27;, &#x27;/kontakt&#x27;, &#x27;Publisert&#x27;, 1]],
+    Kundeportal: [[&#x27;Oversikt&#x27;, &#x27;/&#x27;, &#x27;Utkast&#x27;, 2], [&#x27;Om oss&#x27;, &#x27;/om-oss&#x27;, &#x27;Publisert&#x27;, 1], [&#x27;Hjelp&#x27;, &#x27;/hjelp&#x27;, &#x27;Publisert&#x27;, 1]]
+  };
+  const views = {
+    hero: { name: &#x27;Velkomstfelt&#x27;, keys: [&#x27;home.title&#x27;, &#x27;home.subtitle&#x27;, &#x27;home.action&#x27;] },
+    contact: { name: &#x27;Kontaktfelt&#x27;, keys: [&#x27;support.title&#x27;, &#x27;support.message&#x27;] }
+  };
+  const languages = [[&#x27;nb&#x27;, &#x27;Bokmål&#x27;], [&#x27;nn&#x27;, &#x27;Nynorsk&#x27;], [&#x27;en-GB&#x27;, &#x27;Engelsk&#x27;]];
+  const shared = {
+    &#x27;home.title&#x27;: { nb: &#x27;Velkommen til butikken&#x27;, nn: &#x27;Velkomen til butikken&#x27;, &#x27;en-GB&#x27;: &#x27;Welcome to the shop&#x27; },
+    &#x27;home.subtitle&#x27;: { nb: &#x27;Finn noe du blir glad i.&#x27;, nn: &#x27;Finn noko du blir glad i.&#x27;, &#x27;en-GB&#x27;: &#x27;Find something you love.&#x27; },
+    &#x27;home.action&#x27;: { nb: &#x27;Se utvalget&#x27;, nn: &#x27;Sjå utvalet&#x27;, &#x27;en-GB&#x27;: &#x27;Browse products&#x27; },
+    &#x27;support.title&#x27;: { nb: &#x27;Kan vi hjelpe deg?&#x27;, nn: &#x27;Kan vi hjelpe deg?&#x27;, &#x27;en-GB&#x27;: &#x27;How can we help?&#x27; },
+    &#x27;support.message&#x27;: { nb: &#x27;Ta kontakt med oss.&#x27;, &#x27;en-GB&#x27;: &#x27;Get in touch with us.&#x27; },
+    &#x27;checkout.submit&#x27;: { nb: &#x27;Betal nå&#x27;, nn: &#x27;Betal no&#x27;, &#x27;en-GB&#x27;: &#x27;Pay now&#x27; }
+  };
+  const overrides = { &#x27;Nettbutikk/checkout.submit/nb&#x27;: &#x27;Fullfør kjøpet&#x27; };
+  const alignment = {};
+  const state = { screen: &#x27;home&#x27;, app: &#x27;Nettbutikk&#x27;, page: 0, view: &#x27;hero&#x27;, fromLibrary: false };
+  const screenNames = new Set([&#x27;home&#x27;, &#x27;pages&#x27;, &#x27;page&#x27;, &#x27;view&#x27;, &#x27;views&#x27;, &#x27;texts&#x27;, &#x27;common&#x27;]);
+  const page = () =&gt; pages[state.app][state.page];
+  const ownKey = (key, locale) =&gt; `${state.app}/${key}/${locale}`;
+
+  function restore(snapshot) {
+    const saved = snapshot?.modelContent?.textanityTableNavigation;
+    if (!saved) return;
+    if (screenNames.has(saved.screen)) state.screen = saved.screen;
+    if (Object.hasOwn(pages, saved.app)) state.app = saved.app;
+    if (Object.hasOwn(views, saved.view)) state.view = saved.view;
+    state.page = Number.isInteger(saved.page) &amp;&amp; saved.page &gt;= 0 &amp;&amp; saved.page &lt; pages[state.app].length ? saved.page : 0;
+    state.fromLibrary = !!saved.fromLibrary;
+  }
+  function remember() {
+    window.openai?.setWidgetState?.({ modelContent: { textanityTableNavigation: { ...state } }, privateContent: null }).catch(() =&gt; {});
+  }
+  function effective(key, locale) {
+    const id = ownKey(key, locale);
+    if (Object.hasOwn(overrides, id)) return { message: overrides[id], origin: &#x27;Egen tekst&#x27;, own: true };
+    if (Object.hasOwn(shared[key], locale)) return { message: shared[key][locale], origin: &#x27;Felles&#x27;, own: false };
+    const fallback = ownKey(key, &#x27;nb&#x27;);
+    return { message: overrides[fallback] ?? shared[key].nb ?? &#x27;&#x27;, origin: &#x27;Fra bokmål&#x27;, own: false };
+  }
+  function sourceFor(cell, key, locale) {
+    const info = effective(key, locale);
+    const source = document.createElement(&#x27;div&#x27;);
+    source.className = &#x27;tn-cell-source&#x27;;
+    source.hidden = info.origin === &#x27;Felles&#x27;;
+    const label = document.createElement(&#x27;span&#x27;);
+    label.textContent = info.origin;
+    if (info.own) label.className = &#x27;tn-cell-own&#x27;;
+    source.append(label);
+    if (info.own) {
+      const reset = document.createElement(&#x27;button&#x27;);
+      reset.type = &#x27;button&#x27;;
+      reset.className = &#x27;tn-cell-reset cursor-interaction&#x27;;
+      reset.textContent = &#x27;Bruk felles&#x27;;
+      reset.setAttribute(&#x27;aria-label&#x27;, `Bruk felles tekst for ${key}, ${locale}`);
+      reset.addEventListener(&#x27;click&#x27;, () =&gt; {
+        delete overrides[ownKey(key, locale)];
+        const fresh = effective(key, locale);
+        cell.querySelector(&#x27;textarea&#x27;).value = fresh.message;
+        source.replaceWith(sourceFor(cell, key, locale));
+        changed(cell.closest(&#x27;table&#x27;).dataset.matrix);
+      });
+      source.append(reset);
+    }
+    return source;
+  }
+  function changed(name) {
+    q(`[data-status=&quot;${name}&quot;]`).textContent = &#x27;Ulagrede endringer i skissen&#x27;;
+  }
+  function renderTable(name) {
+    const table = q(`[data-matrix=&quot;${name}&quot;]`);
+    const body = table.querySelector(&#x27;tbody&#x27;);
+    body.replaceChildren();
+    const keys = name === &#x27;view&#x27; ? views[state.view].keys : Object.keys(shared);
+    for (const key of keys) {
+      const row = document.createElement(&#x27;tr&#x27;);
+      const keyCell = document.createElement(&#x27;th&#x27;);
+      keyCell.scope = &#x27;row&#x27;;
+      const code = document.createElement(&#x27;code&#x27;);
+      code.textContent = key;
+      keyCell.append(code);
+      row.append(keyCell);
+      for (const [locale, language] of languages) {
+        const cell = document.createElement(&#x27;td&#x27;);
+        const input = document.createElement(&#x27;textarea&#x27;);
+        input.rows = 1;
+        input.dataset.key = key;
+        input.dataset.locale = locale;
+        input.setAttribute(&#x27;aria-label&#x27;, `${key}, ${language}`);
+        input.value = name === &#x27;common&#x27; ? shared[key][locale] ?? &#x27;&#x27; : effective(key, locale).message;
+        input.placeholder = &#x27;Mangler oversettelse&#x27;;
+        cell.append(input);
+        if (name !== &#x27;common&#x27;) cell.append(sourceFor(cell, key, locale));
+        input.addEventListener(&#x27;input&#x27;, () =&gt; {
+          if (name === &#x27;common&#x27;) shared[key][locale] = input.value;
+          else {
+            overrides[ownKey(key, locale)] = input.value;
+            cell.querySelector(&#x27;.tn-cell-source&#x27;).replaceWith(sourceFor(cell, key, locale));
+          }
+          changed(name);
+          input.style.height = &#x27;auto&#x27;;
+          input.style.height = `${input.scrollHeight + 2}px`;
+        });
+        row.append(cell);
+      }
+      body.append(row);
+    }
+    body.querySelectorAll(&#x27;textarea&#x27;).forEach(input =&gt; { input.style.height = `${input.scrollHeight + 2}px`; });
+    q(`[data-status=&quot;${name}&quot;]`).textContent = &#x27;&#x27;;
+  }
+  function renderPages() {
+    const rows = q(&#x27;.tn-pages-rows&#x27;);
+    rows.replaceChildren();
+    pages[state.app].forEach((entry, index) =&gt; {
+      const button = document.createElement(&#x27;button&#x27;);
+      button.type = &#x27;button&#x27;;
+      button.className = &#x27;tn-page-row cursor-interaction&#x27;;
+      button.dataset.page = String(index);
+      const name = document.createElement(&#x27;span&#x27;);
+      const title = document.createElement(&#x27;strong&#x27;);
+      const path = document.createElement(&#x27;small&#x27;);
+      title.textContent = entry[0]; path.textContent = entry[1]; name.append(title, path);
+      const status = document.createElement(&#x27;span&#x27;); status.className = &#x27;tn-tag&#x27;; status.textContent = entry[2];
+      const count = document.createElement(&#x27;span&#x27;); count.textContent = String(entry[3]);
+      button.append(name, status, count); rows.append(button);
+    });
+  }
+  function renderCrumbs() {
+    const target = q(&#x27;.tn-crumbs&#x27;); target.replaceChildren();
+    let entries;
+    if (state.screen === &#x27;home&#x27;) entries = [[&#x27;Arbeidsområder&#x27;]];
+    else if (state.screen === &#x27;common&#x27;) entries = [[&#x27;Arbeidsområder&#x27;, &#x27;home&#x27;], [&#x27;Felles område&#x27;]];
+    else {
+      entries = [[&#x27;Apper&#x27;, &#x27;home&#x27;], [state.app, &#x27;pages&#x27;]];
+      if (state.screen === &#x27;pages&#x27;) entries.push([&#x27;Sider&#x27;]);
+      if (state.screen === &#x27;page&#x27;) entries.push([&#x27;Sider&#x27;, &#x27;pages&#x27;], [page()[0]]);
+      if (state.screen === &#x27;views&#x27;) entries.push([&#x27;Visninger&#x27;]);
+      if (state.screen === &#x27;texts&#x27;) entries.push([&#x27;Appens tekster&#x27;]);
+      if (state.screen === &#x27;view&#x27;) {
+        if (state.fromLibrary) entries.push([&#x27;Visninger&#x27;, &#x27;views&#x27;]);
+        else entries.push([&#x27;Sider&#x27;, &#x27;pages&#x27;], [page()[0], &#x27;page&#x27;]);
+        entries.push([views[state.view].name]);
+      }
+    }
+    entries.forEach(([label, screen], index) =&gt; {
+      if (index) { const separator = document.createElement(&#x27;span&#x27;); separator.textContent = &#x27;/&#x27;; separator.setAttribute(&#x27;aria-hidden&#x27;, &#x27;true&#x27;); target.append(separator); }
+      const element = document.createElement(screen ? &#x27;button&#x27; : &#x27;span&#x27;);
+      element.textContent = label;
+      if (screen) { element.type = &#x27;button&#x27;; element.dataset.go = screen; element.className = &#x27;cursor-interaction&#x27;; }
+      target.append(element);
+    });
+  }
+  function render() {
+    qa(&#x27;[data-screen]&#x27;).forEach(el =&gt; { el.hidden = el.dataset.screen !== state.screen; });
+    q(&#x27;.tn-app-navigation&#x27;).hidden = [&#x27;home&#x27;, &#x27;common&#x27;].includes(state.screen);
+    q(&#x27;#tn-app-picker&#x27;).value = state.app;
+    qa(&#x27;.tn-app-value&#x27;).forEach(el =&gt; { el.textContent = state.app; });
+    qa(&#x27;.tn-app-label&#x27;).forEach(el =&gt; { el.textContent = state.app.toUpperCase(); });
+    qa(&#x27;.tn-page-name&#x27;).forEach(el =&gt; { el.textContent = page()[0]; });
+    qa(&#x27;.tn-page-path&#x27;).forEach(el =&gt; { el.textContent = page()[1]; });
+    q(&#x27;[data-screen=page] .tn-tag&#x27;).textContent = page()[2];
+    q(&#x27;.tn-view-name&#x27;).textContent = views[state.view].name;
+    q(&#x27;.tn-view-context&#x27;).textContent = state.fromLibrary ? &#x27;GJENBRUKBAR VISNING&#x27; : &#x27;VISNING PÅ SIDEN&#x27;;
+    q(&#x27;.tn-view-type&#x27;).textContent = `${state.view} · gjenbrukes på 2 sider`;
+    q(&#x27;.tn-view-usage&#x27;).textContent = `Visningen gjenbrukes på ${pages[state.app][0][0]} og ${pages[state.app][state.view === &#x27;hero&#x27; ? 1 : 2][0]}.`;
+    q(&#x27;.tn-placement-field&#x27;).hidden = state.fromLibrary;
+    q(&#x27;.tn-alignment&#x27;).value = alignment[`${state.app}/${state.page}/${state.view}`] ?? &#x27;start&#x27;;
+    qa(&#x27;[data-open-view]&#x27;).forEach(el =&gt; {
+      el.hidden = state.page === 1 ? el.dataset.openView !== &#x27;hero&#x27; : state.page === 2 ? el.dataset.openView !== &#x27;contact&#x27; : false;
+      el.querySelector(&#x27;small&#x27;).textContent = `Visning: ${el.dataset.openView} · brukes på 2 sider`;
+    });
+    q(&#x27;[data-library-view=hero] small&#x27;).textContent = `hero · brukes på ${pages[state.app][0][0]} og ${pages[state.app][1][0]}`;
+    q(&#x27;[data-library-view=contact] small&#x27;).textContent = `contact · brukes på ${pages[state.app][0][0]} og ${pages[state.app][2][0]}`;
+    qa(&#x27;[data-nav]&#x27;).forEach(el =&gt; {
+      const name = el.dataset.nav;
+      const active = name === &#x27;apps&#x27; ? state.screen === &#x27;home&#x27; : name === &#x27;pages&#x27; ? [&#x27;pages&#x27;, &#x27;page&#x27;].includes(state.screen) || (state.screen === &#x27;view&#x27; &amp;&amp; !state.fromLibrary) : name === &#x27;views&#x27; ? state.screen === &#x27;views&#x27; || (state.screen === &#x27;view&#x27; &amp;&amp; state.fromLibrary) : state.screen === name;
+      if (active) el.setAttribute(&#x27;aria-current&#x27;, &#x27;page&#x27;); else el.removeAttribute(&#x27;aria-current&#x27;);
+    });
+    [&#x27;view&#x27;, &#x27;texts&#x27;].forEach(name =&gt; { q(`[data-save-table=&quot;${name}&quot;]`).textContent = `Lagre for ${state.app}`; });
+    q(&#x27;.tn-context&#x27;).textContent = state.screen === &#x27;home&#x27; ? &#x27;Arbeidsområder&#x27; : state.screen === &#x27;common&#x27; ? &#x27;Felles tekster · alle språk&#x27; : `${state.app} · alle språk`;
+    renderCrumbs(); renderPages();
+    if ([&#x27;view&#x27;, &#x27;texts&#x27;, &#x27;common&#x27;].includes(state.screen)) renderTable(state.screen);
+  }
+  function go(screen) { state.screen = screen; render(); remember(); }
+  root.addEventListener(&#x27;click&#x27;, event =&gt; {
+    const button = event.target.closest(&#x27;button&#x27;);
+    if (!button || !root.contains(button)) return;
+    if (button.dataset.go) go(button.dataset.go);
+    else if (button.dataset.app) { state.app = button.dataset.app; state.page = 0; go(&#x27;pages&#x27;); }
+    else if (button.dataset.page !== undefined) { state.page = Number(button.dataset.page); go(&#x27;page&#x27;); }
+    else if (button.dataset.openView) { state.view = button.dataset.openView; state.fromLibrary = false; go(&#x27;view&#x27;); }
+    else if (button.dataset.libraryView) { state.view = button.dataset.libraryView; state.fromLibrary = true; go(&#x27;view&#x27;); }
+    else if (button.dataset.saveTable) q(`[data-status=&quot;${button.dataset.saveTable}&quot;]`).textContent = &#x27;Lagret i skissen&#x27;;
+  });
+  q(&#x27;#tn-app-picker&#x27;).addEventListener(&#x27;change&#x27;, event =&gt; { state.app = event.target.value; state.page = 0; go(&#x27;pages&#x27;); });
+  q(&#x27;.tn-alignment&#x27;).addEventListener(&#x27;change&#x27;, event =&gt; { alignment[`${state.app}/${state.page}/${state.view}`] = event.target.value; });
+  restore(window.openai?.widgetState); render();
+  let lastWidth = 0;
+  const resizeObserver = new ResizeObserver(entries =&gt; {
+    const width = entries[0].contentRect.width;
+    if (width === lastWidth) return;
+    lastWidth = width;
+    qa(&#x27;.tn-text-matrix textarea&#x27;).forEach(input =&gt; {
+      if (!input.offsetParent) return;
+      input.style.height = &#x27;auto&#x27;;
+      input.style.height = `${input.scrollHeight + 2}px`;
+    });
+  });
+  resizeObserver.observe(q(&#x27;.tn-main&#x27;));
+  window.addEventListener(&#x27;openai:set_globals&#x27;, event =&gt; { if (event.detail?.globals?.widgetState) { restore(event.detail.globals.widgetState); render(); } });
+  if (globalThis.Tweak) {
+    const design = { radius: 4 };
+    const tweak = new Tweak({ container: root, onChange: () =&gt; { root.style.setProperty(&#x27;--tn-round&#x27;, `${design.radius}px`); } });
+    tweak.addSlider(design, &#x27;radius&#x27;, { label: &#x27;Hjørner&#x27;, min: 0, max: 12, unit: &#x27;px&#x27; });
+  }
 })();
 &lt;/script&gt;
 

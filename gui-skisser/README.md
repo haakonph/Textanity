@@ -2,11 +2,13 @@
 
 Forslag til navigasjon: **app → side → visning**, med et eget **fellesområde** for delte tekstgrupper og oversettelser. Alt innhold er eksempeldata.
 
-[Åpne PDF med alle fem skissene](textanity-skisser.pdf)
+[Åpne PDF med alle seks skissene](textanity-skisser.pdf)
 
 ## Arbeidsområder
 
 ![Inngang til Nettbutikk, Kundeportal og Felles område](skisser/01-arbeidsomrader.png)
+
+Tekstvisningen er forenklet til en tabell med kolonnene **Nøkkel | Bokmål | Nynorsk | Engelsk**. Tekstene redigeres direkte i cellene.
 
 ## Appens sider
 
@@ -18,20 +20,20 @@ Forslag til navigasjon: **app → side → visning**, med et eget **fellesområd
 
 ## Visningseditor
 
-![Velkomstfelt med innstillinger for plassering, gjenbrukbar visning og appens tekstoverstyring](skisser/04-visningseditor.png)
+![Visningens teksttabell med nøkkel og språk bortover](skisser/04-visningseditor.png)
 
 ## Felles område
 
-![Delte tekstgrupper og oversettelser som brukes av flere apper](skisser/05-fellesomrade.png)
+![Felles teksttabell med nøkkel og språk bortover](skisser/05-fellesomrade.png)
+
+## Appens tekster
+
+![Appens tekster med nøkkel og språk i kolonner](skisser/06-appens-tekster.png)
 
 ## Klikkbar versjon
 
 Den selvstendige, klikkbare prototypen ligger i `index.html`. `galleri.html` viser alle bildene, og `textanity-skisser.pdf` samler dem som PDF. Prototypen bruker bare eksempeldata; ingen endringer sendes til CMS-et.
 
-GitHub Pages må aktiveres én gang av en bruker med tilgang til Pages-innstillingene:
+[Åpne den klikkbare skissen på GitHub Pages](https://haakonph.github.io/Textanity/gui-skisser/).
 
-1. Åpne [Settings → Pages](https://github.com/haakonph/Textanity/settings/pages).
-2. Velg **Deploy from a branch**, grenen **gh-pages**, mappen **/ (root)** og **Save**.
-3. Når utrullingen er ferdig, åpne https://haakonph.github.io/Textanity/gui-skisser/.
-
-Publiseringskoblingen fikk HTTP 403 ved forsøk på å aktivere Pages. Filene er lastet opp og testet som selvstendig nettside.
+Pages publiserer fra `gh-pages`. Filene er testet som en selvstendig nettside.
