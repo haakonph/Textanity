@@ -2059,6 +2059,17 @@ html&gt;body{padding:0}&lt;/style&gt;
 #textanity-navigation .tn-data-table select {font-size:13px;padding:6px 9px;}
 @media(max-width:580px){#textanity-navigation .tn-property-table th:first-child{width:110px;}#textanity-navigation .tn-data-table select{font-size:16px;}}
 
+#textanity-navigation .tn-version-controls {display:flex;flex-wrap:wrap;align-items:end;gap:12px 20px;margin-bottom:17px;}
+#textanity-navigation .tn-version-label {display:grid;gap:5px;font-size:11px;color:var(--tn-secondary);}
+#textanity-navigation .tn-version-label select {min-width:235px;font-size:13px;color:var(--tn-ink);}
+#textanity-navigation .tn-version-hint {color:var(--tn-secondary);font-size:11px;padding-bottom:9px;}
+#textanity-navigation .tn-text-matrix .tn-draft-cell,#textanity-navigation .tn-text-matrix .tn-draft-cell textarea {background:var(--tn-tint);}
+#textanity-navigation .tn-text-matrix textarea[readonly]:hover {background:var(--tn-paper);border-color:transparent;}
+#textanity-navigation .tn-secondary {border:1px solid var(--tn-border);border-radius:var(--tn-round);padding:9px 14px;font-size:12px;}
+#textanity-navigation .tn-secondary:disabled {opacity:.45;}
+#textanity-navigation .tn-cell-source {font-size:11px;}
+@media(max-width:580px){#textanity-navigation .tn-version-label,#textanity-navigation .tn-version-label select{width:100%;min-width:0;}#textanity-navigation .tn-version-label select{font-size:16px;}#textanity-navigation .tn-version-hint{padding-bottom:0;}}
+
 &lt;/style&gt;
 &lt;script&gt;
 (() =&gt; {
@@ -2083,8 +2094,19 @@ html&gt;body{padding:0}&lt;/style&gt;
     &#x27;checkout.submit&#x27;: { nb: &#x27;Betal nå&#x27;, nn: &#x27;Betal no&#x27;, &#x27;en-GB&#x27;: &#x27;Pay now&#x27; }
   };
   const overrides = { &#x27;Nettbutikk/checkout.submit/nb&#x27;: &#x27;Fullfør kjøpet&#x27; };
+  const versions = {
+    approved: &#x27;Godkjent&#x27;,
+    development: &#x27;Utkast fra utvikling&#x27;,
+    subject: &#x27;Utkast fra fag&#x27;,
+    translation: &#x27;Utkast fra oversettelse&#x27;
+  };
+  const drafts = {
+    development: { &#x27;Nettbutikk/home.action/nb&#x27;: &#x27;Utforsk hele utvalget&#x27; },
+    subject: { &#x27;Nettbutikk/home.title/nb&#x27;: &#x27;Velkommen til nettbutikken&#x27;, &#x27;common/support.title/nb&#x27;: &#x27;Trenger du hjelp?&#x27; },
+    translation: { &#x27;Nettbutikk/home.title/en-GB&#x27;: &#x27;Welcome to our online shop&#x27;, &#x27;common/home.title/en-GB&#x27;: &#x27;Welcome to our online shop&#x27; }
+  };
   const alignment = {};
-  const state = { screen: &#x27;home&#x27;, app: &#x27;Nettbutikk&#x27;, page: 0, view: &#x27;hero&#x27;, fromLibrary: false };
+  const state = { screen: &#x27;home&#x27;, app: &#x27;Nettbutikk&#x27;, page: 0, view: &#x27;hero&#x27;, fromLibrary: false, version: &#x27;approved&#x27; };
   const screenNames = new Set([&#x27;home&#x27;, &#x27;pages&#x27;, &#x27;page&#x27;, &#x27;view&#x27;, &#x27;views&#x27;, &#x27;texts&#x27;, &#x27;common&#x27;]);
   const page = () =&gt; pages[state.app][state.page];
   const ownKey = (key, locale) =&gt; `${state.app}/${key}/${locale}`;
@@ -2095,6 +2117,7 @@ html&gt;body{padding:0}&lt;/style&gt;
     if (screenNames.has(saved.screen)) state.screen = saved.screen;
     if (Object.hasOwn(pages, saved.app)) state.app = saved.app;
     if (Object.hasOwn(views, saved.view)) state.view = saved.view;
+    if (Object.hasOwn(versions, saved.version)) state.version = saved.version;
     state.page = Number.isInteger(saved.page) &amp;&amp; saved.page &gt;= 0 &amp;&amp; saved.page &lt; pages[state.app].length ? saved.page : 0;
     state.fromLibrary = !!saved.fromLibrary;
   }
@@ -2108,27 +2131,68 @@ html&gt;body{padding:0}&lt;/style&gt;
     const fallback = ownKey(key, &#x27;nb&#x27;);
     return { message: overrides[fallback] ?? shared[key].nb ?? &#x27;&#x27;, origin: &#x27;Fra bokmål&#x27;, own: false };
   }
-  function sourceFor(cell, key, locale) {
-    const info = effective(key, locale);
+  function scopeKey(name, key, locale) {
+    return `${name === &#x27;common&#x27; ? &#x27;common&#x27; : state.app}/${key}/${locale}`;
+  }
+  function approvedValue(name, key, locale) {
+    if (name !== &#x27;common&#x27;) return { ...effective(key, locale), exists: true };
+    return { message: shared[key][locale] ?? &#x27;&#x27;, exists: Object.hasOwn(shared[key], locale), origin: &#x27;Felles&#x27; };
+  }
+  function versionValue(name, key, locale) {
+    const base = approvedValue(name, key, locale);
+    const id = scopeKey(name, key, locale);
+    if (state.version !== &#x27;approved&#x27; &amp;&amp; hasDraft(name, key, locale)) {
+      return { message: drafts[state.version][id], isDraft: true, exists: true };
+    }
+    return { ...base, isDraft: false };
+  }
+  function tableKeys(name) {
+    return name === &#x27;view&#x27; ? views[state.view].keys : Object.keys(shared);
+  }
+  function hasDraft(name, key, locale) {
+    if (state.version === &#x27;approved&#x27;) return false;
+    const id = scopeKey(name, key, locale);
+    if (!Object.hasOwn(drafts[state.version], id)) return false;
+    const base = approvedValue(name, key, locale);
+    return !base.exists || drafts[state.version][id] !== base.message;
+  }
+  function draftCount(name) {
+    if (state.version === &#x27;approved&#x27;) return 0;
+    return tableKeys(name).reduce((sum, key) =&gt; sum + languages.filter(([locale]) =&gt; hasDraft(name, key, locale)).length, 0);
+  }
+  function updateVersionActions(name) {
+    const approved = state.version === &#x27;approved&#x27;;
+    q(`[data-save-table=&quot;${name}&quot;]`).hidden = approved;
+    const approve = q(`[data-approve-table=&quot;${name}&quot;]`);
+    approve.hidden = approved;
+    approve.disabled = !draftCount(name);
+    q(`[data-version=&quot;${name}&quot;]`).value = state.version;
+    q(`[data-version-hint=&quot;${name}&quot;]`).textContent = approved ? &#x27;Godkjente tekster er skrivebeskyttet.&#x27; : &#x27;Uendrede celler viser godkjent tekst.&#x27;;
+  }
+  function sourceFor(cell, name, key, locale) {
+    const info = versionValue(name, key, locale);
+    cell.classList.toggle(&#x27;tn-draft-cell&#x27;, info.isDraft);
     const source = document.createElement(&#x27;div&#x27;);
     source.className = &#x27;tn-cell-source&#x27;;
-    source.hidden = info.origin === &#x27;Felles&#x27;;
     const label = document.createElement(&#x27;span&#x27;);
-    label.textContent = info.origin;
-    if (info.own) label.className = &#x27;tn-cell-own&#x27;;
+    label.textContent = info.isDraft ? versions[state.version] : info.exists ? &#x27;Godkjent&#x27; : &#x27;Ingen godkjent tekst&#x27;;
+    if (!info.isDraft &amp;&amp; info.origin === &#x27;Fra bokmål&#x27;) label.textContent += &#x27; · Fra bokmål&#x27;;
+    if (!info.isDraft &amp;&amp; info.own) label.textContent += &#x27; · Egen apptekst&#x27;;
+    if (info.isDraft) label.className = &#x27;tn-cell-own&#x27;;
     source.append(label);
-    if (info.own) {
+    if (info.isDraft) {
       const reset = document.createElement(&#x27;button&#x27;);
       reset.type = &#x27;button&#x27;;
       reset.className = &#x27;tn-cell-reset cursor-interaction&#x27;;
-      reset.textContent = &#x27;Bruk felles&#x27;;
-      reset.setAttribute(&#x27;aria-label&#x27;, `Bruk felles tekst for ${key}, ${locale}`);
+      reset.textContent = &#x27;Bruk godkjent&#x27;;
+      reset.setAttribute(&#x27;aria-label&#x27;, `Bruk godkjent tekst for ${key}, ${locale}`);
       reset.addEventListener(&#x27;click&#x27;, () =&gt; {
-        delete overrides[ownKey(key, locale)];
-        const fresh = effective(key, locale);
-        cell.querySelector(&#x27;textarea&#x27;).value = fresh.message;
-        source.replaceWith(sourceFor(cell, key, locale));
-        changed(cell.closest(&#x27;table&#x27;).dataset.matrix);
+        delete drafts[state.version][scopeKey(name, key, locale)];
+        const input = cell.querySelector(&#x27;textarea&#x27;);
+        input.value = versionValue(name, key, locale).message;
+        source.replaceWith(sourceFor(cell, name, key, locale));
+        input.style.height = &#x27;auto&#x27;; input.style.height = `${input.scrollHeight + 2}px`;
+        changed(name);
       });
       source.append(reset);
     }
@@ -2136,12 +2200,13 @@ html&gt;body{padding:0}&lt;/style&gt;
   }
   function changed(name) {
     q(`[data-status=&quot;${name}&quot;]`).textContent = &#x27;Ulagrede endringer i skissen&#x27;;
+    updateVersionActions(name);
   }
   function renderTable(name) {
     const table = q(`[data-matrix=&quot;${name}&quot;]`);
     const body = table.querySelector(&#x27;tbody&#x27;);
     body.replaceChildren();
-    const keys = name === &#x27;view&#x27; ? views[state.view].keys : Object.keys(shared);
+    const keys = tableKeys(name);
     for (const key of keys) {
       const row = document.createElement(&#x27;tr&#x27;);
       const keyCell = document.createElement(&#x27;th&#x27;);
@@ -2157,16 +2222,18 @@ html&gt;body{padding:0}&lt;/style&gt;
         input.dataset.key = key;
         input.dataset.locale = locale;
         input.setAttribute(&#x27;aria-label&#x27;, `${key}, ${language}`);
-        input.value = name === &#x27;common&#x27; ? shared[key][locale] ?? &#x27;&#x27; : effective(key, locale).message;
+        input.value = versionValue(name, key, locale).message;
+        input.readOnly = state.version === &#x27;approved&#x27;;
         input.placeholder = &#x27;Mangler oversettelse&#x27;;
         cell.append(input);
-        if (name !== &#x27;common&#x27;) cell.append(sourceFor(cell, key, locale));
+        cell.append(sourceFor(cell, name, key, locale));
         input.addEventListener(&#x27;input&#x27;, () =&gt; {
-          if (name === &#x27;common&#x27;) shared[key][locale] = input.value;
-          else {
-            overrides[ownKey(key, locale)] = input.value;
-            cell.querySelector(&#x27;.tn-cell-source&#x27;).replaceWith(sourceFor(cell, key, locale));
-          }
+          if (state.version === &#x27;approved&#x27;) return;
+          const id = scopeKey(name, key, locale);
+          const base = approvedValue(name, key, locale);
+          if (base.exists &amp;&amp; input.value === base.message) delete drafts[state.version][id];
+          else drafts[state.version][id] = input.value;
+          cell.querySelector(&#x27;.tn-cell-source&#x27;).replaceWith(sourceFor(cell, name, key, locale));
           changed(name);
           input.style.height = &#x27;auto&#x27;;
           input.style.height = `${input.scrollHeight + 2}px`;
@@ -2177,6 +2244,43 @@ html&gt;body{padding:0}&lt;/style&gt;
     }
     body.querySelectorAll(&#x27;textarea&#x27;).forEach(input =&gt; { input.style.height = `${input.scrollHeight + 2}px`; });
     q(`[data-status=&quot;${name}&quot;]`).textContent = &#x27;&#x27;;
+    updateVersionActions(name);
+  }
+  function approveTable(name) {
+    if (state.version === &#x27;approved&#x27;) return;
+    let count = 0;
+    for (const key of tableKeys(name)) {
+      for (const [locale] of languages) {
+        const id = scopeKey(name, key, locale);
+        if (!hasDraft(name, key, locale)) continue;
+        const message = drafts[state.version][id];
+        if (name === &#x27;common&#x27;) shared[key][locale] = message;
+        else overrides[ownKey(key, locale)] = message;
+        delete drafts[state.version][id];
+        count++;
+      }
+    }
+    state.version = &#x27;approved&#x27;;
+    render(); remember();
+    q(`[data-status=&quot;${name}&quot;]`).textContent = `${count} ${count === 1 ? &#x27;endring godkjent&#x27; : &#x27;endringer godkjent&#x27;} i skissen.`;
+  }
+  function addVersionControls() {
+    [&#x27;view&#x27;, &#x27;texts&#x27;, &#x27;common&#x27;].forEach(name =&gt; {
+      const section = q(`[data-screen=&quot;${name}&quot;]`);
+      const controls = document.createElement(&#x27;div&#x27;); controls.className = &#x27;tn-version-controls&#x27;;
+      const label = document.createElement(&#x27;label&#x27;); label.className = &#x27;tn-version-label&#x27;; label.textContent = &#x27;Vis tekstversjon&#x27;;
+      const select = document.createElement(&#x27;select&#x27;); select.dataset.version = name;
+      select.setAttribute(&#x27;aria-label&#x27;, &#x27;Vis tekstversjon&#x27;);
+      for (const [value, title] of Object.entries(versions)) { const option = document.createElement(&#x27;option&#x27;); option.value = value; option.textContent = title; select.append(option); }
+      label.append(select);
+      const hint = document.createElement(&#x27;span&#x27;); hint.dataset.versionHint = name; hint.className = &#x27;tn-version-hint&#x27;; hint.setAttribute(&#x27;aria-live&#x27;, &#x27;polite&#x27;);
+      controls.append(label, hint); section.querySelector(&#x27;.tn-table-note&#x27;).before(controls);
+      select.addEventListener(&#x27;change&#x27;, () =&gt; { state.version = select.value; render(); remember(); });
+      const save = q(`[data-save-table=&quot;${name}&quot;]`); save.textContent = &#x27;Lagre utkast&#x27;;
+      const approve = document.createElement(&#x27;button&#x27;); approve.type = &#x27;button&#x27;; approve.className = &#x27;tn-secondary cursor-interaction&#x27;; approve.dataset.approveTable = name; approve.textContent = &#x27;Godkjenn endringer&#x27;;
+      approve.setAttribute(&#x27;aria-label&#x27;, &#x27;Godkjenn endringene i tabellen&#x27;);
+      save.after(approve);
+    });
   }
   function renderPages() {
     const rows = q(&#x27;.tn-pages-rows&#x27;);
@@ -2261,8 +2365,7 @@ html&gt;body{padding:0}&lt;/style&gt;
       const active = name === &#x27;apps&#x27; ? state.screen === &#x27;home&#x27; : name === &#x27;pages&#x27; ? [&#x27;pages&#x27;, &#x27;page&#x27;].includes(state.screen) || (state.screen === &#x27;view&#x27; &amp;&amp; !state.fromLibrary) : name === &#x27;views&#x27; ? state.screen === &#x27;views&#x27; || (state.screen === &#x27;view&#x27; &amp;&amp; state.fromLibrary) : state.screen === name;
       if (active) el.setAttribute(&#x27;aria-current&#x27;, &#x27;page&#x27;); else el.removeAttribute(&#x27;aria-current&#x27;);
     });
-    [&#x27;view&#x27;, &#x27;texts&#x27;].forEach(name =&gt; { q(`[data-save-table=&quot;${name}&quot;]`).textContent = `Lagre for ${state.app}`; });
-    q(&#x27;.tn-context&#x27;).textContent = state.screen === &#x27;home&#x27; ? &#x27;Arbeidsområder&#x27; : state.screen === &#x27;common&#x27; ? &#x27;Felles tekster · alle språk&#x27; : `${state.app} · alle språk`;
+    q(&#x27;.tn-context&#x27;).textContent = state.screen === &#x27;home&#x27; ? &#x27;Arbeidsområder&#x27; : `${state.screen === &#x27;common&#x27; ? &#x27;Felles tekster&#x27; : state.app} · ${versions[state.version]}`;
     renderCrumbs(); renderPages(); renderViewLists();
     if ([&#x27;view&#x27;, &#x27;texts&#x27;, &#x27;common&#x27;].includes(state.screen)) renderTable(state.screen);
   }
@@ -2275,11 +2378,12 @@ html&gt;body{padding:0}&lt;/style&gt;
     else if (button.dataset.page !== undefined) { state.page = Number(button.dataset.page); go(&#x27;page&#x27;); }
     else if (button.dataset.openView) { state.view = button.dataset.openView; state.fromLibrary = false; go(&#x27;view&#x27;); }
     else if (button.dataset.libraryView) { state.view = button.dataset.libraryView; state.fromLibrary = true; go(&#x27;view&#x27;); }
-    else if (button.dataset.saveTable) q(`[data-status=&quot;${button.dataset.saveTable}&quot;]`).textContent = &#x27;Lagret i skissen&#x27;;
+    else if (button.dataset.saveTable) q(`[data-status=&quot;${button.dataset.saveTable}&quot;]`).textContent = `${versions[state.version]} lagret i skissen`;
+    else if (button.dataset.approveTable) approveTable(button.dataset.approveTable);
   });
   q(&#x27;#tn-app-picker&#x27;).addEventListener(&#x27;change&#x27;, event =&gt; { state.app = event.target.value; state.page = 0; go(&#x27;pages&#x27;); });
   q(&#x27;.tn-alignment&#x27;).addEventListener(&#x27;change&#x27;, event =&gt; { alignment[`${state.app}/${state.page}/${state.view}`] = event.target.value; });
-  restore(window.openai?.widgetState); render();
+  addVersionControls(); restore(window.openai?.widgetState); render();
   let lastWidth = 0;
   const resizeObserver = new ResizeObserver(entries =&gt; {
     const width = entries[0].contentRect.width;
