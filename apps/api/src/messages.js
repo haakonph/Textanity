@@ -29,6 +29,19 @@ export function createMessageFormatter(message, locale) {
   };
 }
 
+export function messageParameters(message) {
+  const formatter = new IntlMessageFormat(message, 'nb', undefined, { ignoreTag: true });
+  const names = new Set();
+  function visit(elements) {
+    for (const element of elements) {
+      if (element.type !== TYPE.literal && element.type !== TYPE.pound && element.value) names.add(element.value);
+      for (const option of Object.values(element.options || {})) visit(option.value);
+    }
+  }
+  visit(formatter.getAst());
+  return [...names].sort();
+}
+
 function validateNumbers(elements, variables) {
   for (const element of elements) {
     if ([TYPE.plural, TYPE.number, TYPE.date, TYPE.time].includes(element.type)

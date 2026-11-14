@@ -1,7 +1,7 @@
 import { localeFallbacks } from './messages.js';
 
 export const readinessQuery = `SELECT p.app_id, p.path, a.default_locale, v.config,
-  pv.position, g.key, ag.group_id, t.key, tr.locale, o.message
+  pv.position, g.key, ag.group_id, t.key, tr.locale, o.message, d.revision, h.status
   FROM pages p
   JOIN apps a ON a.id = p.app_id
   LEFT JOIN views v ON v.app_id = a.id
@@ -11,6 +11,8 @@ export const readinessQuery = `SELECT p.app_id, p.path, a.default_locale, v.conf
   LEFT JOIN texts t ON t.group_id = g.id
   LEFT JOIN text_translations tr ON tr.text_id = t.id
   LEFT JOIN app_text_overrides o ON o.app_id = a.id AND o.text_id = t.id
+  LEFT JOIN text_drafts d ON d.text_id = t.id
+  LEFT JOIN text_revisions h ON h.text_id = t.id
   LIMIT 0`;
 
 export async function getPage(database, appSlug, path) {

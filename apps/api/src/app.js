@@ -1,6 +1,8 @@
 import Fastify from 'fastify';
 import { getPage, getTextGroup, readinessQuery } from './content.js';
 import { canonicalLocale, createMessageFormatter } from './messages.js';
+import { editorRoutes } from './editor.js';
+import { EditorError } from './editor-content.js';
 
 const slug = { type: 'string', maxLength: 160, pattern: '^[a-z0-9]+(-[a-z0-9]+)*$' };
 const textKey = { type: 'string', maxLength: 160, pattern: '^[a-z][a-z0-9_]*$' };
@@ -19,8 +21,10 @@ function requestedLocale(request, reply) {
   }
 }
 
-export function createApp({ database, logger = false }) {
-  const app = Fastify({ logger, ajv: { customOptions: { coerceTypes: false } } });
+export function createApp({ database, logger = false, editorToken }) {
+  if (editorToken && editorToken.length < 32) throw new Error('EDITOR_API_TOKEN must contain at least 32 characters');
+  const app = Fastify({ logger, ajv: { customOptions: { coerceTypes: false, removeAdditional: false } } });
+  app.register(editorRoutes, { prefix: '/api/editor', database, editorToken });
 
   app.get('/api/health/live', async () => ({ status: 'ok' }));
   app.get('/api/health/ready', async (_request, reply) => {
@@ -108,6 +112,8 @@ export function createApp({ database, logger = false }) {
 
   app.setErrorHandler((error, request, reply) => {
     if (error.validation) return reply.code(400).send({ error: 'Invalid request' });
+    if (error instanceof EditorError) return reply.code(error.statusCode).send({ error: error.message });
+    if (['23505', '23514', '23503'].includes(error.code)) return reply.code(409).send({ error: 'Conflicting or invalid content' });
     request.log.error({ err: error }, 'Request failed');
     return reply.code(500).send({ error: 'Internal server error' });
   });
