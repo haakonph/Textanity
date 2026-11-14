@@ -147,3 +147,65 @@ Eksempelrespons fra tekstgruppe-oppslag:
 Migrering 002 oppretter appen `default`, flytter eksisterende sider dit og konverterer `slug` til `path` med innledende `/`. ID, innhold, status og tidsstempler bevares. Det gamle `/api/pages/:slug`-endepunktet leser bare fra denne appen.
 
 Rollback gjenoppretter det gamle skjemaet når dataene kan representeres der. Den avvises hvis flere apper, visninger, tekstgrupper eller sidestier som ikke passer det gamle slug-formatet er lagt til. Dermed slettes ikke ny CMS-data ved et uhell. Knex kjører migreringene i transaksjoner.
+
+## Gjenbruk inne i tekster
+
+Skriv `[[gruppe.nøkkel]]` i en ICU-melding for å inkludere en annen tekst i
+samme app. Eksempel:
+
+```text
+common.product = Textanity
+common.greeting = Hei {name}!
+common.welcome = [[common.greeting]] Velkommen til [[common.product]].
+```
+
+Formatering av `common.welcome` med `{"name":"Ada"}` gir
+`Hei Ada! Velkommen til Textanity.` Referanser kan nøstes og brukes inne i
+ICU-flertalls- og select-grener. Alle refererte tekster får de samme variablene,
+men formateres separat med sitt eget effektive språk. Dermed blir ikke `#`,
+krøllparenteser eller variabelverdier i resultatet tolket som ICU i teksten rundt.
+Referansesyntaksen er reservert også i ICU-siterte tekstsegmenter.
+
+Hver referanse følger vanlig språkfallback og appoverstyring. `GET` returnerer
+ICU-meldingen med referansene bevart; `POST .../:key/format` løser dem opp.
+Alle grener valideres, også grener som ikke velges med de aktuelle variablene.
+Manglende referanse/oversettelse, ugyldig lagret ICU og sirkulære referanser gir
+HTTP 500 uten interne detaljer; manglende eller ugyldige variabler gir HTTP 400.
+Maksimal referansedybde er 32, med høyst 512 oppslag per formatering og
+maksimalt 1 MiB formatert tekst.
+
+## Aliaser mellom apper
+
+Migrering 003 legger til `text_aliases`. En alias kobler en lokal tekstnøkkel til
+en bestemt tekst i en bestemt kildeapp. Kilden lagres med ID, slik at endring av
+nøkkelen ikke bryter koblingen. Begge tekstgruppene må være tilordnet sine apper.
+
+Eksempel: `app-b.checkout.confirm` kan peke til `app-a.common.submit`.
+Opprett først den lokale teksten `checkout.confirm` i `texts`, og sett deretter:
+
+```sql
+INSERT INTO text_aliases (app_id, text_id, source_app_id, source_text_id)
+VALUES (:app_b_id, :confirm_text_id, :app_a_id, :submit_text_id);
+```
+
+Kolonparametrene er plassholdere for databaseverktøyet ditt. Det finnes fortsatt
+ikke noe skrive-API eller redaktørgrensesnitt.
+
+Aliasen følger kildeappens effektive tekst, inkludert overstyringer. Det
+forespurte språket sendes videre, og kildeappens standardspråk brukes som fallback.
+Uten eksplisitt språk bruker kilden sitt eget standardspråk. Lokale oversettelser
+og overstyringer på aliasnøkkelen ignoreres så lenge aliasen finnes. Fjern
+aliasraden for å bruke den lokale teksten igjen. En tekst med samme nøkkel i en
+annen app kan fortsatt være en vanlig tekst eller ha en annen alias.
+
+Både gruppeoppslag og formatering følger aliaser. Svaret bruker den lokale
+nøkkelen og inneholder kildeverdiene `message`, `locale` og `isOverride`, samt
+`alias: { app, group, key }` for den direkte kilden. Referanser inne i kildeteksten
+løses i kildeappens kontekst. Aliaskjeder er tillatt; sykluser, også blandinger av
+aliaser og tekstreferanser, avvises ved lesing/formatering. Aliasens kildetekst
+og kildeapp kan ikke slettes før aliasen er fjernet. Tilbakerulling av migrering
+003 avvises dersom aliasdata finnes.
+
+Dette er offentlig leseinnhold på samme måte som de øvrige tekstendepunktene;
+aliaser er ingen tilgangskontroll. Hvis kildegruppen ikke lenger er tilordnet
+kildeappen, behandles aliasen som ødelagt og gir HTTP 500.

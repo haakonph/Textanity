@@ -52,7 +52,7 @@ Migreringer og integrasjonstester caches aldri. `npm test` krever ingen database
 - `POST /api/apps/:app/texts/:group/:key/format?locale=nb`: formater én melding med variabler, uten å endre data.
 - `GET /api/pages/:slug`: kompatibilitetsendepunkt, begrenset til standardappen `default`.
 
-Datamodellen støtter flere apper, sider, gjenbrukbare visninger, delte tekstgrupper, oversettelser og overstyringer per app og språk. ICU MessageFormat følger CLDR-reglene for entall/flertall. Se [databaseskjema og API-eksempler](docs/database.md).
+Datamodellen støtter flere apper, sider, gjenbrukbare visninger, delte tekstgrupper, oversettelser og overstyringer per app og språk. Tekster kan inkludere andre tekster med `[[gruppe.nøkkel]]`, og appspesifikke aliaser kan gi en tekst fra en annen app en ny nøkkel uten å kopiere innholdet. ICU MessageFormat følger CLDR-reglene for entall/flertall. Se [databaseskjema og API-eksempler](docs/database.md).
 
 Migrering 002 bevarer eksisterende sider og tekstinnhold i appen `default`, med `slug` omgjort til `/path`. Nye sider er utkast som standard. `updated_at` oppdateres automatisk av PostgreSQL. Databasen får en tom standardapp, uten eksempelinnhold.
 
