@@ -46,12 +46,17 @@ Migreringer og integrasjonstester caches aldri. `npm test` krever ingen database
 ## API og datamodell
 
 - `GET /api/health/live`: prosessen svarer.
-- `GET /api/health/ready`: API-et får lest det migrerte `pages`-skjemaet; ellers HTTP 503.
-- `GET /api/pages/:slug`: hent én publisert side. Utkast og manglende sider gir HTTP 404.
+- `GET /api/health/ready`: API-et får lest app-, side-, visnings- og tekstskjemaet; ellers HTTP 503.
+- `GET /api/apps/:app/pages?path=/`: hent én publisert side med ordnede visningsplasseringer.
+- `GET /api/apps/:app/texts/:group?locale=en-GB`: hent effektive ICU-meldinger med språkfallback og appens overstyringer.
+- `POST /api/apps/:app/texts/:group/:key/format?locale=nb`: formater én melding med variabler, uten å endre data.
+- `GET /api/pages/:slug`: kompatibilitetsendepunkt, begrenset til standardappen `default`.
 
-`pages` har UUID, unik slug, tittel, tekstinnhold, status (`draft`/`published`) og opprettet-/endret-tid. Nye sider er utkast som standard. Fremtidige skriveoperasjoner må sette `updated_at` ved endring. Databasen starter uten eksempelinnhold.
+Datamodellen støtter flere apper, sider, gjenbrukbare visninger, delte tekstgrupper, oversettelser og overstyringer per app og språk. ICU MessageFormat følger CLDR-reglene for entall/flertall. Se [databaseskjema og API-eksempler](docs/database.md).
 
-Dette er et stack-grunnlag: redaktørgrensesnitt, innlogging, roller, skrive-API, mediebibliotek og versjonshistorikk er videre arbeid. Det finnes foreløpig ingen offentlige skriveendepunkter.
+Migrering 002 bevarer eksisterende sider og tekstinnhold i appen `default`, med `slug` omgjort til `/path`. Nye sider er utkast som standard. `updated_at` oppdateres automatisk av PostgreSQL. Databasen får en tom standardapp, uten eksempelinnhold.
+
+Dette er et stack-grunnlag: redaktørgrensesnitt, innlogging, roller, skrive-API, mediebibliotek og versjonshistorikk er videre arbeid. Leseendepunktene er beregnet på offentlig appinnhold. Det finnes foreløpig ingen offentlige skriveendepunkter.
 
 ## GitHub Actions
 
