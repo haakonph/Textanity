@@ -2,13 +2,15 @@
 
 Forslag til navigasjon: **app → side → visning**, med et eget **fellesområde** for delte tekstgrupper og oversettelser. Alt innhold er eksempeldata.
 
-[Åpne PDF med alle seks skissene](textanity-skisser.pdf)
+[Åpne PDF med alle sju skissene](textanity-skisser.pdf)
 
 ## Arbeidsområder
 
 ![Inngang til Nettbutikk, Kundeportal og Felles område](skisser/01-arbeidsomrader.png)
 
-Tekstvisningen er forenklet til en tabell med kolonnene **Nøkkel | Bokmål | Nynorsk | Engelsk**. Tekstene redigeres direkte i cellene.
+Alle undersider bruker tabeller: sidelister, visningsoversikt, sidens visninger, sideinformasjon, innstillinger og tekster. Startsiden beholder inngangene til apper og fellesområdet.
+
+Teksttabellene har kolonnene **Nøkkel | Bokmål | Nynorsk | Engelsk**. Tekstene redigeres direkte i cellene.
 
 ## Appens sider
 
@@ -29,6 +31,10 @@ Tekstvisningen er forenklet til en tabell med kolonnene **Nøkkel | Bokmål | Ny
 ## Appens tekster
 
 ![Appens tekster med nøkkel og språk i kolonner](skisser/06-appens-tekster.png)
+
+## Visningsoversikt
+
+![Tabell over appens gjenbrukbare visninger](skisser/07-visningsoversikt.png)
 
 ## Klikkbar versjon
 
