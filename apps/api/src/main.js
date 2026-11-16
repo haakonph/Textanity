@@ -2,7 +2,7 @@ import { createDatabase } from '@textanity/database';
 import { createApp } from './app.js';
 
 const database = createDatabase(process.env.DATABASE_URL);
-const app = createApp({ database, logger: true });
+const app = createApp({ database, logger: true, editorToken: process.env.EDITOR_API_TOKEN });
 database.on('error', (error) => app.log.error({ err: error }, 'Idle database connection error'));
 app.addHook('onClose', async () => database.end());
 

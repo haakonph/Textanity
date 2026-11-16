@@ -24,7 +24,7 @@ npm run db:migrate
 npm run dev
 ```
 
-Åpne http://localhost:5173. Vite videresender `/api` til backend på http://127.0.0.1:3000. Startsiden viser om API og databaseskjema er tilgjengelige. PostgreSQL eksponeres bare på lokal maskin; data lagres i et Docker-volum.
+Sett `EDITOR_API_TOKEN` til en tilfeldig nøkkel på minst 32 tegn i `.env` (kan genereres med `openssl rand -hex 32`). Åpne http://localhost:5173 og oppgi redaktørnøkkelen. Vite videresender `/api` til backend på http://127.0.0.1:3000. PostgreSQL eksponeres bare på lokal maskin; data lagres i et Docker-volum.
 
 `npm run db:down` stopper databasen og beholder data. `.env` ignoreres av Git. Compose-verdiene er kun for lokal utvikling.
 
@@ -56,7 +56,9 @@ Datamodellen støtter flere apper, sider, gjenbrukbare visninger, delte tekstgru
 
 Migrering 002 bevarer eksisterende sider og tekstinnhold i appen `default`, med `slug` omgjort til `/path`. Nye sider er utkast som standard. `updated_at` oppdateres automatisk av PostgreSQL. Databasen får en tom standardapp, uten eksempelinnhold.
 
-Dette er et stack-grunnlag: redaktørgrensesnitt, innlogging, roller, skrive-API, mediebibliotek og versjonshistorikk er videre arbeid. Leseendepunktene er beregnet på offentlig appinnhold. Det finnes foreløpig ingen offentlige skriveendepunkter.
+Redaktørgrensesnittet har app- og fellesinngang, tabeller for sider og visninger, og teksttabeller med nøkkel og språk bortover. Tekstene har separate utkast fra utvikling, fag og oversettelse, med tilbakefall til godkjent tekst per celle. Lagring, godkjenning og revisjonshistorikk ligger bak redaktørnøkkelen på `/api/editor`. Se [redaktørverktøy, tekstversjoner og API](docs/editor.md).
+
+De opprinnelige leseendepunktene er fortsatt offentlige og leverer bare godkjent tekst og publiserte sider. Individuelle brukere, tilgangsroller og mediebibliotek er videre arbeid.
 
 ## GitHub Actions
 

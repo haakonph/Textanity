@@ -7,7 +7,7 @@
     "dev": { "executor": "nx:run-commands", "continuous": true, "options": { "command": "node --env-file-if-exists=.env --watch apps/api/src/main.js" } },
     "build": { "executor": "nx:run-commands", "outputs": ["{workspaceRoot}/dist/apps/api"], "options": { "command": "esbuild apps/api/src/main.js --bundle --platform=node --target=node24 --format=esm --packages=external --outfile=dist/apps/api/main.js" } },
     "lint": { "executor": "nx:run-commands", "options": { "command": "eslint apps/api" } },
-    "test": { "executor": "nx:run-commands", "options": { "command": "node --test apps/api/test/app.test.js apps/api/test/messages.test.js" } },
-    "integration": { "executor": "nx:run-commands", "cache": false, "options": { "command": "node --env-file-if-exists=.env --test apps/api/test/database.integration.test.js" } }
+    "test": { "executor": "nx:run-commands", "options": { "command": "node --test apps/api/test/app.test.js apps/api/test/messages.test.js apps/api/test/editor.test.js" } },
+    "integration": { "executor": "nx:run-commands", "cache": false, "options": { "command": "node --env-file-if-exists=.env --test apps/api/test/database.integration.test.js apps/api/test/editor.integration.test.js" } }
   }
 }
