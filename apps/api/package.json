@@ -7,7 +7,7 @@
     "@formatjs/icu-messageformat-parser": "3.5.23",
     "@textanity/database": "*",
     "fastify": "5.12.8",
-    "intl-messageformat": "12.1.5"
+    "intl-messageformat": "12.2.0"
   },
   "devDependencies": {
     "esbuild": "0.28.2",
